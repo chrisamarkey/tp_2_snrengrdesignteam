@@ -1,3 +1,5 @@
+//Craig Gabel, Chris Markey
+
 import java.util.*;
 
 public class Student {
