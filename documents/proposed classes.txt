@@ -1,0 +1,58 @@
+Student
+	name : String
+	id : Integer
+	gpa : float
+	major : String (enum?)
+	enemyIDs : LinkedList<Integer>
+
+Project
+	name : string
+	required members : LinkedList<String> (LinkedList<enum>?)
+	actual members : LinkedList<Student>
+
+----------------------------------------------------------------------------------
+
+ExcelIO
+	readRow()
+	writeRow()
+
+TeamIO
+	readStudentList()
+	readProjectList()
+	writeTeamList()
+
+----------------------------------------------------------------------------------
+
+MainWindow
+	button, load excel file
+	textbox, students read
+	textbox, projects read
+	textbox, electrical engineers required
+	textbox, electrical engineers available
+	.
+	.
+	.
+	textbox, average gpa
+	slider/textbox, team gpa range
+	button, create teams
+	textbox, result - success/fail
+	textbox, fail message (cause for)
+
+InterfaceIO
+	???
+	need more detail on observer pattern
+	???
+
+----------------------------------------------------------------------------------
+----------------------------------------------------------------------------------
+
+TeamBuilderSettings
+	enableEnemies : boolean
+	gpaWindowSize : float
+
+TeamBuilder
+	buildTeams()
+
+Controller
+	students : LinkedList<Student>
+	projects : LinkedList<Project>
