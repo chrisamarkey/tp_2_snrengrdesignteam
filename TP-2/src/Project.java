@@ -5,36 +5,21 @@ import java.util.LinkedList;
 public class Project 
 {
 
-	public String project;
-	public LinkedList<String> projectName;
-//	Isn't requiredMembers actually the required students with particular degrees?
+	public String projectName;
+	public LinkedList<String> newProject;
 	public LinkedList<String> requiredMembers;
-//	Isn't this the required degrees per project?	
-	public LinkedList<String> actualMembers;
+	public LinkedList<Student> actualMembers;
 
 	public Project() {
-		this.project = "project";
+		this.projectName = "projectName";
 		this.requiredMembers = new LinkedList<>();
 		this.actualMembers = new LinkedList<>();
 	}
 
-	public Project(String project, LinkedList<String> requiredMembers, LinkedList<String> actualMembers) {
-		this.project = project;
+	public Project(String project, LinkedList<String> requiredMembers, LinkedList<Student> actualMembers) {
+		this.projectName = project;
 		this.requiredMembers = requiredMembers;
 		this.actualMembers = actualMembers;
-	}
-
-	public void addProject (String project, LinkedList<String> projectName) {
-		projectName.add(project);
-	}
-
-	public void removeProject(String project) {
-		for (int i = 0; i < projectName.size(); i++) {
-			if (project == projectName.get(i)) {
-				projectName.remove(i);
-				break;
-			}
-		}
 	}
 
 	public static void main(String[] args) {
@@ -55,34 +40,48 @@ public class Project
 		project3Degrees.add("CompE");
 		project3Degrees.add("CompSci");
 		
+		LinkedList<Integer> student1Enemies = new LinkedList<Integer>();
+		student1Enemies.add(222);
+		student1Enemies.add(333);
+		student1Enemies.add(444);
+		Student student1 = new Student("Craig", 111, 4.0, "EE", student1Enemies);
+//		Object[] array = student1.toArray();
+//		System.out.println(student1); // Possibly a toString method would allow this information to be printed out.
+		LinkedList<Integer> student2Enemies = new LinkedList<Integer>();
+		student2Enemies.add(555);
+		student2Enemies.add(666);
+		student2Enemies.add(777);
+		Student student2 = new Student("Andy", 111, 4.0, "CompE", student2Enemies);
+		LinkedList<Integer> student3Enemies = new LinkedList<Integer>();
+		student3Enemies.add(888);
+		student3Enemies.add(999);
+		student3Enemies.add(000);
+		Student student3 = new Student("Chris", 111, 4.0, "ME", student3Enemies);
 		
-		LinkedList<String> studentGroup1 = new LinkedList<String>();
-		studentGroup1.add("Craig");
-		studentGroup1.add("Andy");
-		studentGroup1.add("Chris");
-		LinkedList<String> studentGroup2 = new LinkedList<String>();
-		studentGroup2.add("Peter");
-		studentGroup2.add("Paul");
-		studentGroup2.add("Mary");
-		LinkedList<String> studentGroup3 = new LinkedList<String>();
-		studentGroup3.add("AC");
-		studentGroup3.add("DC");
+		LinkedList<Student> studentGroup1 = new LinkedList<Student>();
+		studentGroup1.add(student1);
+		studentGroup1.add(student2);
+		studentGroup1.add(student3);
+		
+//		LinkedList<String> studentGroup1 = new LinkedList<String>();
+//		studentGroup1.add("Craig");
+//		studentGroup1.add("Andy");
+//		studentGroup1.add("Chris");
 		
 		Project project1 = new Project(seniorProject1, project1Degrees, studentGroup1);
-//		Project project2 = new Project(seniorProject2, project2Degrees, studentGroup2);
-//		Project project3 = new Project(seniorProject3, project3Degrees, studentGroup3);
 		
-//		project1.addProject (seniorProject1, project1Degrees);
-//		project2.addProject (seniorProject2, project2Degrees);
-//		project3.addProject (seniorProject3, project3Degrees);
-		
-		System.out.println(project1);
-		System.out.println(seniorProject1);
-		System.out.println(project1Degrees);
-		System.out.println(seniorProject2);
-		System.out.println(project2Degrees);
-		System.out.println(seniorProject3);
-		System.out.println(project3Degrees);
+		System.out.println("Student1 name = " + student1.getStudentName(student1));
+		System.out.println("Student1 id = " + student1.getStudentID(student1));
+		System.out.println("Student1 major = " + student1.getStudentMajor(student1));
+		System.out.println("Student1 enemy IDs = " + student1.getStudentEnemyIDs(student1));
+		System.out.println("Student Group1" + studentGroup1);
+		System.out.println("project1 = " + project1);
+		System.out.println("seniorProject1 = " + seniorProject1);
+		System.out.println("project1Degrees = " + project1Degrees);
+		System.out.println("seniorProject2 = " + seniorProject2);
+		System.out.println("projecct2Degrees = " + project2Degrees);
+		System.out.println("seniorProject3 = " + seniorProject3);
+		System.out.println("project3Degrees = " + project3Degrees);
 	}
 }
 

@@ -1,3 +1,4 @@
+
 //Craig Gabel, Chris Markey
 
 import java.util.*;
@@ -9,7 +10,8 @@ public class Student {
 	public double gpa;
 	public String major;
 	public LinkedList<Integer> enemyIDs;
-	public LinkedList<String> studentGroup;
+	public LinkedList<Student> studentMakeUp;
+	public LinkedList<String> studentConfig;
 
 	public Student() {
 		this.name = "default";
@@ -40,6 +42,27 @@ public class Student {
 		}
 	}
 
+	public String getStudentName(Student studentList) {
+		this.name = studentList.name;
+		return this.name;
+	}
+	
+	public Integer getStudentID(Student studentList) {
+		this.id = studentList.id;
+		return this.id;
+	}	
+
+	public String getStudentMajor(Student studentList) {
+		this.major = studentList.major;
+		return this.major;
+	}
+	
+	public LinkedList<Integer> getStudentEnemyIDs(Student studentList) {
+		this.enemyIDs = studentList.enemyIDs;
+		return this.enemyIDs;
+	}
+
+//	Planning to remove this code section:
 //	public void removeOneEnemy(String name, int id) 
 //	{
 //		for (int i = 0; i < enemyIDs.size(); i++)
