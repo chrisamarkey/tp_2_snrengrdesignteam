@@ -1,5 +1,5 @@
 //Craig Gabel, Chris Markey
-
+package application;
 import java.util.*;
 
 public class Student {
