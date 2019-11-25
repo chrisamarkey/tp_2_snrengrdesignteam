@@ -1,4 +1,4 @@
-Some remaining tasks + thoughts on them
+Some remaining tasks + thoughts on them (NOT A COMPLETE LIST, add anything you think is important)
 	GUI
 		add functionality to buttons and text fields
 		add listener class
@@ -27,7 +27,7 @@ Some remaining tasks + thoughts on them
 		thoughts on putting this together
 			Simple steps are often easier than getting it all right in one go.  Could start by just iterating through all students and projects and putting students in project teams with only respect to major.  Get that to work, then add project popularity.  Then add weighted priority.  Then add problem fixing.
 
-High-level schedule
+High-level schedule (not everything is considered...if you see something important is missing, please add it)
 	now through 11/29 - Basic program flow complete
 		- All parts are there, not all functionality
 			- GUI exists
