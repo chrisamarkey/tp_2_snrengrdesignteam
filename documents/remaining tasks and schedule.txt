@@ -1,30 +1,31 @@
-GUI
-	add functionality to buttons and text fields
-	add listener class
-		monitor listener class for instructions from controller class
-	connect to controller class (try to maintain observer pattern)
-Controller
-	high-level thoughts
-		controls tasks
-			read input files
-			build teams
-			write output files
-			exit program
-		a while(1) loop that monitors the GUI/listener which will instruct the controller on what/when to do things
-		initial development can ignore the listner class, just do the tasks without waiting for permission
-TeamBuilder
-	general algorithm (lists of students and projects already exist)
-		place high priority students on projects
-			weighted priority project (1-5?)
-		put everyone else on a team
-			respect major (dont put EE in ME slot)
-			fill least popular projects first
-			random is a goal, but initially it would probably be easier to just iterate through the lists in order
-		fix problems
-			seperate enemies
-			try and respect GPA range
-	thoughts on putting this together
-		Simple steps are often easier than getting it all right in one go.  Could start by just iterating through all students and projects and putting students in project teams with only respect to major.  Get that to work, then add project popularity.  Then add weighted priority.  Then add problem fixing.
+Some remaining tasks + thoughts on them
+	GUI
+		add functionality to buttons and text fields
+		add listener class
+			monitor listener class for instructions from controller class
+		connect to controller class (try to maintain observer pattern)
+	Controller
+		high-level thoughts
+			controls tasks
+				read input files
+				build teams
+				write output files
+				exit program
+			a while(1) loop that monitors the GUI/listener which will instruct the controller on what/when to do things
+			initial development can ignore the listner class, just do the tasks without waiting for permission
+	TeamBuilder
+		general algorithm (lists of students and projects already exist)
+			place high priority students on projects
+				weighted priority project (1-5?)
+			put everyone else on a team
+				respect major (dont put EE in ME slot)
+				fill least popular projects first
+				random is a goal, but initially it would probably be easier to just iterate through the lists in order
+			fix problems
+				seperate enemies
+				try and respect GPA range
+		thoughts on putting this together
+			Simple steps are often easier than getting it all right in one go.  Could start by just iterating through all students and projects and putting students in project teams with only respect to major.  Get that to work, then add project popularity.  Then add weighted priority.  Then add problem fixing.
 
 High-level schedule
 	now through 11/29 - Basic program flow complete
@@ -36,6 +37,7 @@ High-level schedule
 			- All I/O classes exist
 			- All Project/Student classes exist
 		- As mentioned above, not all features need be implemented.  But I think a good goal is that each major part of the project exists and are interacting with each other.  Even if the I/O doesn't know the exact format of the I/O files, or the listener doesn't govern all aspects of of interaction between GUI and Controller, or the TeamBuilder doesn't build teams with all rules present etc...  I think each of these parts should do something and kind of play well with each other.
+
 	11/30 through 12/6  - All major work complete
 		- Note that some bugs will probably still be present
 		- Details will be added as time progresses.  But, I imagine at this stage we'd like to have expanded the "basic program flow" to include all major tasks.
@@ -49,6 +51,7 @@ High-level schedule
 			- too few/too many students, we might never implement this
 		- other potential problems we might not have addressed yet (and might never address)
 			- illegal/unexpected input file format
+
 	12/7 through 12/13 - Turn in and present
 		- fix any major bugs
 		- add missing functionality we feel is important (e.g. dealing with too many/too few students etc...)
