@@ -29,7 +29,7 @@ public class Project
 	public static void main(String[] args) {
 		String seniorProject1 = "Design a autonomous vehicle";
 		String seniorProject2 = "Design a new drill bit to drill through the Bakken shale formation";
-		String seniorProject3 = "Design a robot to act as a seeing eye dog";
+		String seniorProject3 = "Design robot to act as a seeing eye dog";
 
 		LinkedList<String> project1Degrees = new LinkedList<String>();
 		project1Degrees.add("ME");
