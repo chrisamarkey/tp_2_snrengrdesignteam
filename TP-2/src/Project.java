@@ -1,14 +1,16 @@
 //Chris Markey
-
+package application;
 import java.util.LinkedList;
 
-public class Project 
+public class Project
 {
 
 	public String projectName;
-	public LinkedList<String> newProject;
 	public LinkedList<String> requiredMembers;
 	public LinkedList<Student> actualMembers;
+	public int numInterestedProj;
+	public int projectID;
+	public float avgGPA;
 
 	public Project() {
 		this.projectName = "projectName";
@@ -16,21 +18,24 @@ public class Project
 		this.actualMembers = new LinkedList<>();
 	}
 
-	public Project(String project, LinkedList<String> requiredMembers, LinkedList<Student> actualMembers) {
+	public Project(String project, LinkedList<String> requiredMembers, LinkedList<Student> actualMembers, int numInterestedProj, int projectID) {
 		this.projectName = project;
+		this.projectID = projectID;
 		this.requiredMembers = requiredMembers;
 		this.actualMembers = actualMembers;
+		this.numInterestedProj = numInterestedProj;
 	}
 
 	public static void main(String[] args) {
 		String seniorProject1 = "Design a autonomous vehicle";
 		String seniorProject2 = "Design a new drill bit to drill through the Bakken shale formation";
 		String seniorProject3 = "Design a robot to act as a seeing eye dog";
-		
+
 		LinkedList<String> project1Degrees = new LinkedList<String>();
 		project1Degrees.add("ME");
 		project1Degrees.add("EE");
 		project1Degrees.add("CE");
+		
 		LinkedList<String> project2Degrees = new LinkedList<String>();
 		project2Degrees.add("PE");
 		project2Degrees.add("SE");
@@ -39,37 +44,42 @@ public class Project
 		project3Degrees.add("MatlE");
 		project3Degrees.add("CompE");
 		project3Degrees.add("CompSci");
-		
+
 		LinkedList<Integer> student1Enemies = new LinkedList<Integer>();
 		student1Enemies.add(222);
 		student1Enemies.add(333);
 		student1Enemies.add(444);
-		Student student1 = new Student("Craig", 111, 4.0, "EE", student1Enemies);
+
+		LinkedList<String> s1PreferredProj = new LinkedList<String>(); //11-25-19 addition
+		s1PreferredProj.add("Design a autonomous vehicle");
+		s1PreferredProj.add("Design a new drill bit to drill through the Bakken shale formation");
+		s1PreferredProj.add("Design a robot to act as a seeing eye dog");
+		
+		Student student1 = new Student("Craig", 111, 4.0, "EE", student1Enemies, "favProject", s1PreferredProj);
 //		Object[] array = student1.toArray();
 //		System.out.println(student1); // Possibly a toString method would allow this information to be printed out.
 		LinkedList<Integer> student2Enemies = new LinkedList<Integer>();
 		student2Enemies.add(555);
 		student2Enemies.add(666);
 		student2Enemies.add(777);
-		Student student2 = new Student("Andy", 111, 4.0, "CompE", student2Enemies);
+		
+		Student student2 = new Student("Andy", 111, 4.0, "CompE", student2Enemies, "favProject", s1PreferredProj);
 		LinkedList<Integer> student3Enemies = new LinkedList<Integer>();
 		student3Enemies.add(888);
 		student3Enemies.add(999);
 		student3Enemies.add(000);
-		Student student3 = new Student("Chris", 111, 4.0, "ME", student3Enemies);
-		
+		Student student3 = new Student("Chris", 111, 4.0, "ME", student3Enemies, "favProject", s1PreferredProj);
+
 		LinkedList<Student> studentGroup1 = new LinkedList<Student>();
 		studentGroup1.add(student1);
 		studentGroup1.add(student2);
 		studentGroup1.add(student3);
 		
-//		LinkedList<String> studentGroup1 = new LinkedList<String>();
-//		studentGroup1.add("Craig");
-//		studentGroup1.add("Andy");
-//		studentGroup1.add("Chris");
+		int project1_ID = 1111;
+		int numInterestedProj_1 = 5;
 		
-		Project project1 = new Project(seniorProject1, project1Degrees, studentGroup1);
-		
+		Project project1 = new Project(seniorProject1, project1Degrees, studentGroup1, project1_ID, numInterestedProj_1);
+
 		System.out.println("Student1 name = " + student1.getStudentName(student1));
 		System.out.println("Student1 id = " + student1.getStudentID(student1));
 		System.out.println("Student1 major = " + student1.getStudentMajor(student1));
@@ -84,4 +94,3 @@ public class Project
 		System.out.println("project3Degrees = " + project3Degrees);
 	}
 }
-
