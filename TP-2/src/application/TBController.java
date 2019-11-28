@@ -4,6 +4,11 @@ import java.util.LinkedList;
 
 public class TBController
 {
+	// this enum probably can't be nested here
+	// the code is currently designed to have some other class
+	// change the ProgramState with the setProgramState method
+	// which it can't do without having scope of this enum
+	// ...or change the setProgramState to not use this enum
 	enum ProgramState
 	{
 		eInit,

@@ -1,5 +1,7 @@
 package application;
 
+//this class is just to get you started.  feel free to change it however you see fit
+
 public class TeamBuilder
 {
 	enum TeamBuildingState
