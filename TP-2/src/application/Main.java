@@ -9,7 +9,9 @@ public class Main extends Application
 	@Override
 	public void start(Stage primaryStage)
 	{
-		MainWindow mainWindow = new MainWindow(primaryStage);
+//		UiListener uiListener = new UiListener();
+		MainWindow mainWindow = new MainWindow();
+//		TBController tbController = new TBController();
 	}
 
 	public static void main(String[] args)

@@ -1,4 +1,5 @@
 //Craig Gabel, Chris Markey
+
 package application;
 import java.util.*;
 
@@ -8,9 +9,12 @@ public class Student {
 	public int id;
 	public double gpa;
 	public String major;
+	public String favProject;
+	public String preferredProj;
 	public LinkedList<Integer> enemyIDs;
 	public LinkedList<Student> studentMakeUp;
 	public LinkedList<String> studentConfig;
+	public LinkedList<String> preferredProjects;
 
 	public Student() {
 		this.name = "default";
@@ -20,12 +24,14 @@ public class Student {
 		this.enemyIDs = new LinkedList<>();
 	}
 
-	public Student(String name, int id, double gpa, String major, LinkedList<Integer> enemyIDs) {
+	public Student(String name, int id, double gpa, String major, LinkedList<Integer> enemyIDs, String favProject, LinkedList<String> preferredProjects) {
 		this.name = name;
 		this.id = id;
 		this.gpa = gpa;
 		this.major = major;
 		this.enemyIDs = enemyIDs;
+		this.favProject = favProject; // 11-25-19 addition
+		this.preferredProjects = preferredProjects; // 11-25-19 addition
 	}
 
 	public void addEnemy(Student student) {
@@ -40,7 +46,20 @@ public class Student {
 			}
 		}
 	}
+	
+	public void addPreferredProjects(String preferredProj) { // 11-25-19 addition
+		preferredProjects.add(preferredProj);
+	}
 
+	public void removePreferredProjects(String preferredProj) { // 11-25-19 addition
+		for (int i = 0; i < preferredProjects.size(); i++) {
+			if (preferredProj == preferredProjects.get(i)) {
+				preferredProjects.remove(i);
+				break;
+			}
+		}
+	}
+	
 	public String getStudentName(Student studentList) {
 		this.name = studentList.name;
 		return this.name;
@@ -61,28 +80,31 @@ public class Student {
 		return this.enemyIDs;
 	}
 
-//	Planning to remove this code section:
-//	public void removeOneEnemy(String name, int id)
-//	{
-//		for (int i = 0; i < enemyIDs.size(); i++)
-//		{
-//			if (student.id == enemyIDs.get(i))
-//			{
-//				enemyIDs.remove(id);
-//				break;
-//			}
-//		}
-//	}
-
+	public LinkedList<String> getPreferredProjects(Student studentList) { // 11-25-19 addition
+		this.preferredProjects = studentList.preferredProjects;
+		return this.preferredProjects;
+	}
+	
+	public String getFavProject(Student studentList) { // 11-25-19 addition
+		this.favProject = studentList.favProject;
+		return this.favProject;
+	}
+	
 	public static void main(String[] args) {
-		Student paper = new Student("paper", 1111, 4.0, "games", new LinkedList<Integer>());
-		Student rock = new Student("rock", 2222, 4.0, "games", new LinkedList<Integer>());
-		Student scissors = new Student("scissors", 3333, 4.0, "games", new LinkedList<Integer>());
+		Student paper = new Student("paper", 1111, 4.0, "games", new LinkedList<Integer>(), "Robot", new LinkedList<String>());
+		Student rock = new Student("rock", 2222, 4.0, "games", new LinkedList<Integer>(), "Toy", new LinkedList<String>());
+		Student scissors = new Student("scissors", 3333, 4.0, "games", new LinkedList<Integer>(), "Plane", new LinkedList<String>());
 
 		paper.addEnemy(scissors);
 		rock.addEnemy(paper);
-		scissors.addEnemy(rock);
-
+		scissors.addEnemy(rock);		
+		System.out.println(paper.enemyIDs);
+		System.out.println(rock.enemyIDs);
+		System.out.println(scissors.enemyIDs);
+		
+		paper.addPreferredProjects("Kite"); // 11-25-19 addition
+		rock.addPreferredProjects("Bike");
+		scissors.addPreferredProjects("Car");
 		System.out.println(paper.enemyIDs);
 		System.out.println(rock.enemyIDs);
 		System.out.println(scissors.enemyIDs);
