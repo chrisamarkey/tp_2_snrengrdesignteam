@@ -1,0 +1,56 @@
+package application;
+
+import java.util.*;
+
+public class TeamBuilder {
+	
+	public LinkedList<Student> studentList;
+	public LinkedList<Project> projectList;
+	public String favProject; 
+	public Student student;
+	public Project project;
+  //	int intArray[]; int[] intArray = new int[20];
+	
+//	1. Randomly search StudentList (possibly sequentially select initially) for project priorities one at a time. 
+//	   Assign Student to the priority project if it is available for that major as long as their enemy is not assigned to that project.
+//	   Continue through StudentList until complete.
+//	   Save the Student ID for the assigned Student in an array.
+	
+	public TeamBuilder(LinkedList<Student> studentList, LinkedList<Project> projectList) {
+		this.studentList = studentList;
+		this.projectList = projectList;
+	}
+	
+	public void assignFavProject(Student student) {
+		for (int i = 0; i < studentList.size(); i++) {
+			student = studentList.get(i);			
+			favProject = student.getFavProject(student);
+			
+			for (int j = 0; j < projectList.size(); j++) {
+			project = projectList.get(j);
+			for (int k = 0; j < project.getRequiredMembers(project).size(); k++) {
+				
+			if (favProject == project.getProjectName (project) & project.getRequiredMembers(project).get(k) == student.getStudentMajor(student)) {
+			// set student for project, set project for student and remove major from project so no other student can be assigned to that project's role
+				
+			}
+			}
+			}
+		}
+	}
+	
+
+//	2. Next. compile StudentList preferred projects to count # of Student who prefer particular projects.
+//	   Store the Student choices per project ID. 
+//	   Randomly select students and assign each student one at a time to their preferred project based on the least popular project
+//	     that does not have their enemy assigned to it and has an open slot for their major.
+//	   Continue through StudentList until complete.
+
+//  3. Calculate each projects' students' average GPA. 
+//	   Calculate the average and standard deviation of all projects' students GPAs.
+//     Report this data for manual adjustments.
+
+//  4. List the students who could not be assigned since their were no open project slots for their major. 
+//	   **Non-happy path** Probably skip this step at first.
+	
+}
