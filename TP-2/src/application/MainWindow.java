@@ -1,5 +1,7 @@
 package application;
 
+import java.io.File;
+import java.util.LinkedList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -8,24 +10,91 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 
 public class MainWindow
 {
+	LinkedList<Student> studentList;
+	LinkedList<Project> projectList;
+	
+	private void makeTestData_projects()
+	{
+		Project project;
+		projectList = new LinkedList<>();
+		
+		//Project(String project, LinkedList<String> requiredMembers, LinkedList<Student> actualMembers, int numInterestedProj, int projectID)
+		project = new Project("project 0", new LinkedList<String>(), new LinkedList<Student>(), 0, 0000);
+		project.requiredMembers.add("Electrical Engineer");
+		project.requiredMembers.add("Electrical Engineer");
+		project.requiredMembers.add("Mechanical Engineer");
+		project.requiredMembers.add("Mechanical Engineer");
+		project.requiredMembers.add("Civil Engineer");
+		projectList.add(project);
+		
+		project = new Project("project 1", new LinkedList<String>(), new LinkedList<Student>(), 0, 1111);
+		project.requiredMembers.add("Electrical Engineer");
+		project.requiredMembers.add("Mechanical Engineer");
+		project.requiredMembers.add("Mechanical Engineer");
+		project.requiredMembers.add("Mechanical Engineer");
+		projectList.add(project);
+		
+		project = new Project("project 2", new LinkedList<String>(), new LinkedList<Student>(), 0, 2222);
+		project.requiredMembers.add("Electrical Engineer");
+		project.requiredMembers.add("Electrical Engineer");
+		project.requiredMembers.add("Civil Engineer");
+		project.requiredMembers.add("Civil Engineer");
+		projectList.add(project);
+		
+		project = new Project("project 3", new LinkedList<String>(), new LinkedList<Student>(), 0, 3333);
+		project.requiredMembers.add("Electrical Engineer");
+		project.requiredMembers.add("Electrical Engineer");
+		project.requiredMembers.add("Electrical Engineer");
+		projectList.add(project);
+		
+	}
+	
+	private void makeTestData_students()
+	{
+		studentList = new LinkedList<>();
+		
+		//studentList.add(new Student(name, id, gpa, major, enemyIDs, favProject, preferredProjects));
+		studentList.add(new Student("ee0", 1111, 4.0, "Electrical Engineer", new LinkedList<Integer>(), "Robot", new LinkedList<String>()));
+		studentList.add(new Student("ee1", 1111, 4.0, "Electrical Engineer", new LinkedList<Integer>(), "Robot", new LinkedList<String>()));
+		studentList.add(new Student("ee2", 1111, 4.0, "Electrical Engineer", new LinkedList<Integer>(), "Robot", new LinkedList<String>()));
+		studentList.add(new Student("ee3", 1111, 4.0, "Electrical Engineer", new LinkedList<Integer>(), "Robot", new LinkedList<String>()));
+		studentList.add(new Student("ee4", 1111, 4.0, "Electrical Engineer", new LinkedList<Integer>(), "Robot", new LinkedList<String>()));
+		studentList.add(new Student("ee5", 1111, 4.0, "Electrical Engineer", new LinkedList<Integer>(), "Robot", new LinkedList<String>()));
+		
+		studentList.add(new Student("me0", 2222, 4.0, "Mechanical Engineer", new LinkedList<Integer>(), "Robot", new LinkedList<String>()));
+		studentList.add(new Student("me1", 2222, 4.0, "Mechanical Engineer", new LinkedList<Integer>(), "Robot", new LinkedList<String>()));
+		studentList.add(new Student("me2", 2222, 4.0, "Mechanical Engineer", new LinkedList<Integer>(), "Robot", new LinkedList<String>()));
+		studentList.add(new Student("me3", 2222, 4.0, "Mechanical Engineer", new LinkedList<Integer>(), "Robot", new LinkedList<String>()));
+		studentList.add(new Student("me4", 2222, 4.0, "Mechanical Engineer", new LinkedList<Integer>(), "Robot", new LinkedList<String>()));
+		
+		studentList.add(new Student("ce0", 3333, 4.0, "Civil Engineer", new LinkedList<Integer>(), "Robot", new LinkedList<String>()));
+		studentList.add(new Student("ce1", 3333, 4.0, "Civil Engineer", new LinkedList<Integer>(), "Robot", new LinkedList<String>()));
+		studentList.add(new Student("ce2", 3333, 4.0, "Civil Engineer", new LinkedList<Integer>(), "Robot", new LinkedList<String>()));
+		
+	}
+	
+	
 	int studentsRead;
 	double averageGPA;
 	double GPArange;
 	int projectsRead;
 	int electricalEngineersRead;
-	int electricalEngineersRquired;
+	int electricalEngineersRequired;
 	int mechanicalEngineersRead;
-	int mechanicalEngineersRquired;
+	int mechanicalEngineersRequired;
 	int civilEngineersRead;
-	int civilEngineersRquired;
+	int civilEngineersRequired;
 	String successFailMessage;
 	
 	Button readStudentsButton;
 	Button readPreferencesButton;
+	Button readProjectsButton;
 	Label studentsReadLabel;
 	TextField studentsReadTextField;
 	Label averageGPALabel;
@@ -59,14 +128,15 @@ public class MainWindow
 		GPArange = 0.0;
 		projectsRead = 0;
 		electricalEngineersRead = 0;
-		electricalEngineersRquired = 0;
+		electricalEngineersRequired = 0;
 		mechanicalEngineersRead = 0;
-		mechanicalEngineersRquired = 0;
+		mechanicalEngineersRequired = 0;
 		civilEngineersRead = 0;
-		civilEngineersRquired = 0;
+		civilEngineersRequired = 0;
 		successFailMessage = "test";
 		
 		buildScreen();
+		updateTextFields();
 	}
 	
 	public void buildScreen()
@@ -88,29 +158,179 @@ public class MainWindow
 		{
 			public void handle(ActionEvent event)
 			{
+//				updateTextFields(1);
+				
+//				FileChooser fileChooser = new FileChooser();
+//				fileChooser.setTitle("Open Students List");
+//				FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Excel files (*.xlsx, *.csv, *.xls)", "*.csv", "*.xls", "*.xlsx");
+//				fileChooser.getExtensionFilters().add(extFilter);
+//				File file = fileChooser.showOpenDialog(new Stage());
+//				if (file != null)
+//				{
+//					System.out.println(file.getName());
+//				}
+				
+				makeTestData_students();
+				
+				studentsRead = 0;
+				averageGPA = 0.0;
+				//GPArange = 0.0;
+				//projectsRead = 0;
+				electricalEngineersRead = 0;
+				//electricalEngineersRequired = 0;
+				mechanicalEngineersRead = 0;
+				//mechanicalEngineersRequired = 0;
+				civilEngineersRead = 0;
+				//civilEngineersRequired = 0;
+				
+				for (Student student : studentList)
+				{
+					if (student.major.equals("Electrical Engineer"))
+					{
+						electricalEngineersRead++;
+					}
+					else if (student.major.equals("Mechanical Engineer"))
+					{
+						mechanicalEngineersRead++;
+					}
+					else if (student.major.equals("Civil Engineer"))
+					{
+						civilEngineersRead++;
+					}
+					studentsRead++;
+					averageGPA += student.gpa;
+				}
+				
+				averageGPA /= studentsRead;
+				
 				updateTextFields();
 			}
 		};
 	}
 	
-	public void updateTextFields()
+	private EventHandler<ActionEvent> readProjects()
 	{
-		
-		testVal++;
-		
-		studentsReadTextField.setText(Integer.toString(testVal));
-		
-		averageGPATextField.setText(Integer.toString(testVal));
-		
-		rangeGPATextField.setText(Integer.toString(testVal));
-		projectsReadTextField.setText(Integer.toString(testVal));
-		electricalEngineersReadTextField.setText(Integer.toString(testVal));
-		electricalEngineersRequiredTextField.setText(Integer.toString(testVal));
-		mechanicalEngineersReadTextField.setText(Integer.toString(testVal));
-		mechanicalEngineersRequiredTextField.setText(Integer.toString(testVal));
-		civilEngineersReadTextField.setText(Integer.toString(testVal));
-		civilEngineersRequiredTextField.setText(Integer.toString(testVal));
-		resultMessageTextField.setText(Integer.toString(testVal));
+		return new EventHandler<ActionEvent>()
+		{
+			public void handle(ActionEvent event)
+			{
+//				updateTextFields(1);
+				
+//				FileChooser fileChooser = new FileChooser();
+//				fileChooser.setTitle("Open Students List");
+//				FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Excel files (*.xlsx, *.csv, *.xls)", "*.csv", "*.xls", "*.xlsx");
+//				fileChooser.getExtensionFilters().add(extFilter);
+//				File file = fileChooser.showOpenDialog(new Stage());
+//				if (file != null)
+//				{
+//					System.out.println(file.getName());
+//				}
+				
+				makeTestData_projects();
+				
+				//studentsRead = 0;
+				//averageGPA = 0.0;
+				//GPArange = 0.0;
+				projectsRead = 0;
+				//electricalEngineersRead = 0;
+				electricalEngineersRequired = 0;
+				//mechanicalEngineersRead = 0;
+				mechanicalEngineersRequired = 0;
+				//civilEngineersRead = 0;
+				civilEngineersRequired = 0;
+				
+				for (Project project : projectList)
+				{
+					for (String requiredMember : project.requiredMembers)
+					{
+						if (requiredMember.equals("Electrical Engineer"))
+						{
+							electricalEngineersRequired++;
+						}
+						else if (requiredMember.equals("Mechanical Engineer"))
+						{
+							mechanicalEngineersRequired++;
+						}
+						if (requiredMember.equals("Civil Engineer"))
+						{
+							civilEngineersRequired++;
+						}
+					}
+					projectsRead++;
+				}
+				
+				updateTextFields();
+			}
+		};
+	}
+	
+	private EventHandler<ActionEvent> readStudentPreferences()
+	{
+		return new EventHandler<ActionEvent>()
+		{
+			public void handle(ActionEvent event)
+			{
+				updateTextFields();
+				
+				FileChooser fileChooser = new FileChooser();
+				fileChooser.setTitle("Open Students Preferences");
+				File file = fileChooser.showOpenDialog(new Stage());
+				FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Excel files (*.xlsx, *.csv, *.xls)", "*.csv", "*.xls", "*.xlsx");
+				fileChooser.getExtensionFilters().add(extFilter);
+				if (file != null)
+				{
+					System.out.println(file.getName());
+				}
+			}
+		};
+	}
+	
+	private EventHandler<ActionEvent> buildTeams()
+	{
+		return new EventHandler<ActionEvent>()
+		{
+			public void handle(ActionEvent event)
+			{
+				studentsRead = 0;
+				averageGPA = 0.0;
+				GPArange = 0.0;
+				projectsRead = 0;
+				electricalEngineersRead = 0;
+				electricalEngineersRequired = 0;
+				mechanicalEngineersRead = 0;
+				mechanicalEngineersRequired = 0;
+				civilEngineersRead = 0;
+				civilEngineersRequired = 0;
+				successFailMessage = "test";
+				
+				updateTextFields();
+				
+//				FileChooser fileChooser = new FileChooser();
+//				fileChooser.setTitle("Save Project Teams");
+//				FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Excel files (*.xlsx, *.csv, *.xls)", "*.csv", "*.xls", "*.xlsx");
+//				fileChooser.getExtensionFilters().add(extFilter);
+//				File file = fileChooser.showSaveDialog(new Stage());
+//				if (file != null)
+//				{
+//					System.out.println(file.getName());
+//				}
+			}
+		};
+	}
+	
+	public void updateTextFields()
+	{		
+		studentsReadTextField.setText(Integer.toString(studentsRead));
+		averageGPATextField.setText(Double.toString(averageGPA));
+		rangeGPATextField.setText(Double.toString(GPArange));
+		projectsReadTextField.setText(Integer.toString(projectsRead));
+		electricalEngineersReadTextField.setText(Integer.toString(electricalEngineersRead));
+		electricalEngineersRequiredTextField.setText(Integer.toString(electricalEngineersRequired));
+		mechanicalEngineersReadTextField.setText(Integer.toString(mechanicalEngineersRead));
+		mechanicalEngineersRequiredTextField.setText(Integer.toString(mechanicalEngineersRequired));
+		civilEngineersReadTextField.setText(Integer.toString(civilEngineersRead));
+		civilEngineersRequiredTextField.setText(Integer.toString(civilEngineersRequired));
+		resultMessageTextField.setText(Integer.toString(0));
 	}
 	
 	public GridPane buildLayout()
@@ -135,18 +355,28 @@ public class MainWindow
 		
 		int verticalIndex = 0;
 		
-		EventHandler<ActionEvent> action = readStudents();
+		EventHandler<ActionEvent> action;
 		
 		readStudentsButton = new Button("Read Students");
+		action = readStudents();
 		readStudentsButton.setOnAction(action);
 		GridPane.setConstraints(readStudentsButton, 0, verticalIndex++);
 		GridPane.setMargin(readStudentsButton, new Insets(5, 5, 5, 5));
 		myGridPane.getChildren().add(readStudentsButton);
 		
 		readPreferencesButton = new Button("Read Preferences");
+		action = readStudentPreferences();
+		readPreferencesButton.setOnAction(action);
 		GridPane.setConstraints(readPreferencesButton, 0, verticalIndex++);
 		GridPane.setMargin(readPreferencesButton, new Insets(5, 5, 5, 5));
 		myGridPane.getChildren().add(readPreferencesButton);
+		
+		readProjectsButton = new Button("Read Projects");
+		action = readProjects();
+		readProjectsButton.setOnAction(action);
+		GridPane.setConstraints(readProjectsButton, 0, verticalIndex++);
+		GridPane.setMargin(readProjectsButton, new Insets(5, 5, 5, 5));
+		myGridPane.getChildren().add(readProjectsButton);
 		
 		studentsReadLabel = new Label("Students Read");
 		GridPane.setConstraints(studentsReadLabel, 0, verticalIndex);
@@ -249,6 +479,8 @@ public class MainWindow
 		myGridPane.getChildren().add(civilEngineersRequiredTextField);
 		
 		makeTeamsButton = new Button("Make Teams");
+		action = buildTeams();
+		makeTeamsButton.setOnAction(action);
 		GridPane.setConstraints(makeTeamsButton, 0, verticalIndex++);
 		GridPane.setMargin(makeTeamsButton, new Insets(5, 5, 5, 5));
 		myGridPane.getChildren().add(makeTeamsButton);

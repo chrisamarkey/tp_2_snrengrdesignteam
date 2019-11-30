@@ -2,6 +2,8 @@ package application;
 
 import java.util.LinkedList;
 
+// this class is just to get you started.  feel free to change it however you see fit
+
 public class TBController
 {
 	// this enum probably can't be nested here
