@@ -60,21 +60,21 @@ public class MainWindow
 		studentList = new LinkedList<>();
 		
 		//studentList.add(new Student(name, id, gpa, major, enemyIDs, favProject, preferredProjects));
-		studentList.add(new Student("ee0", 1111, 4.0, "Electrical Engineer", new LinkedList<Integer>(), "Robot", new LinkedList<String>()));
+		studentList.add(new Student("ee0", 1111, 3.0, "Electrical Engineer", new LinkedList<Integer>(), "Robot", new LinkedList<String>()));
 		studentList.add(new Student("ee1", 1111, 4.0, "Electrical Engineer", new LinkedList<Integer>(), "Robot", new LinkedList<String>()));
-		studentList.add(new Student("ee2", 1111, 4.0, "Electrical Engineer", new LinkedList<Integer>(), "Robot", new LinkedList<String>()));
-		studentList.add(new Student("ee3", 1111, 4.0, "Electrical Engineer", new LinkedList<Integer>(), "Robot", new LinkedList<String>()));
-		studentList.add(new Student("ee4", 1111, 4.0, "Electrical Engineer", new LinkedList<Integer>(), "Robot", new LinkedList<String>()));
-		studentList.add(new Student("ee5", 1111, 4.0, "Electrical Engineer", new LinkedList<Integer>(), "Robot", new LinkedList<String>()));
+		studentList.add(new Student("ee2", 1111, 3.0, "Electrical Engineer", new LinkedList<Integer>(), "Robot", new LinkedList<String>()));
+		studentList.add(new Student("ee3", 1111, 2.0, "Electrical Engineer", new LinkedList<Integer>(), "Robot", new LinkedList<String>()));
+		studentList.add(new Student("ee4", 1111, 3.5, "Electrical Engineer", new LinkedList<Integer>(), "Robot", new LinkedList<String>()));
+		studentList.add(new Student("ee5", 1111, 3.5, "Electrical Engineer", new LinkedList<Integer>(), "Robot", new LinkedList<String>()));
 		
-		studentList.add(new Student("me0", 2222, 4.0, "Mechanical Engineer", new LinkedList<Integer>(), "Robot", new LinkedList<String>()));
-		studentList.add(new Student("me1", 2222, 4.0, "Mechanical Engineer", new LinkedList<Integer>(), "Robot", new LinkedList<String>()));
-		studentList.add(new Student("me2", 2222, 4.0, "Mechanical Engineer", new LinkedList<Integer>(), "Robot", new LinkedList<String>()));
+		studentList.add(new Student("me0", 2222, 3.0, "Mechanical Engineer", new LinkedList<Integer>(), "Robot", new LinkedList<String>()));
+		studentList.add(new Student("me1", 2222, 3.0, "Mechanical Engineer", new LinkedList<Integer>(), "Robot", new LinkedList<String>()));
+		studentList.add(new Student("me2", 2222, 2.0, "Mechanical Engineer", new LinkedList<Integer>(), "Robot", new LinkedList<String>()));
 		studentList.add(new Student("me3", 2222, 4.0, "Mechanical Engineer", new LinkedList<Integer>(), "Robot", new LinkedList<String>()));
-		studentList.add(new Student("me4", 2222, 4.0, "Mechanical Engineer", new LinkedList<Integer>(), "Robot", new LinkedList<String>()));
+		studentList.add(new Student("me4", 2222, 3.5, "Mechanical Engineer", new LinkedList<Integer>(), "Robot", new LinkedList<String>()));
 		
-		studentList.add(new Student("ce0", 3333, 4.0, "Civil Engineer", new LinkedList<Integer>(), "Robot", new LinkedList<String>()));
-		studentList.add(new Student("ce1", 3333, 4.0, "Civil Engineer", new LinkedList<Integer>(), "Robot", new LinkedList<String>()));
+		studentList.add(new Student("ce0", 3333, 3.0, "Civil Engineer", new LinkedList<Integer>(), "Robot", new LinkedList<String>()));
+		studentList.add(new Student("ce1", 3333, 2.0, "Civil Engineer", new LinkedList<Integer>(), "Robot", new LinkedList<String>()));
 		studentList.add(new Student("ce2", 3333, 4.0, "Civil Engineer", new LinkedList<Integer>(), "Robot", new LinkedList<String>()));
 		
 	}
