@@ -15,6 +15,8 @@
 	<classpathentry kind="lib" path="C:/Program Files/Java/jdk-12.0.2/javafx-sdk-11.0.2/lib/javafx.web.jar"/>
 	<classpathentry kind="lib" path="C:/Program Files/Java/jdk-12.0.2/javafx-sdk-11.0.2/lib/javafx-swt.jar"/>
 	<classpathentry kind="lib" path="C:/Program Files/Java/jdk-12.0.2/poi-4.1.1/poi-4.1.1.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/Java/jdk-12.0.2/poi-4.1.1/ooxml-lib/curvesapi-1.06.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/Java/jdk-12.0.2/poi-4.1.1/ooxml-lib/xmlbeans-3.1.0.jar"/>
 	<classpathentry kind="lib" path="C:/Program Files/Java/jdk-12.0.2/poi-4.1.1/poi-examples-4.1.1.jar"/>
 	<classpathentry kind="lib" path="C:/Program Files/Java/jdk-12.0.2/poi-4.1.1/poi-excelant-4.1.1.jar"/>
 	<classpathentry kind="lib" path="C:/Program Files/Java/jdk-12.0.2/poi-4.1.1/poi-ooxml-4.1.1.jar"/>
@@ -31,7 +33,5 @@
 	<classpathentry kind="lib" path="C:/Program Files/Java/jdk-12.0.2/poi-4.1.1/lib/jaxb-impl-2.3.2.jar"/>
 	<classpathentry kind="lib" path="C:/Program Files/Java/jdk-12.0.2/poi-4.1.1/lib/junit-4.12.jar"/>
 	<classpathentry kind="lib" path="C:/Program Files/Java/jdk-12.0.2/poi-4.1.1/lib/log4j-1.2.17.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/Java/jdk-12.0.2/poi-4.1.1/ooxml-lib/curvesapi-1.06.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/Java/jdk-12.0.2/poi-4.1.1/ooxml-lib/xmlbeans-3.1.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
