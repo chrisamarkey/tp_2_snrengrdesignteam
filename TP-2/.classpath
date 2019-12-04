@@ -6,32 +6,32 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="C:/Program Files/Java/jdk-12.0.2/javafx-sdk-11.0.2/lib/javafx.base.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/Java/jdk-12.0.2/javafx-sdk-11.0.2/lib/javafx.controls.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/Java/jdk-12.0.2/javafx-sdk-11.0.2/lib/javafx.fxml.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/Java/jdk-12.0.2/javafx-sdk-11.0.2/lib/javafx.graphics.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/Java/jdk-12.0.2/javafx-sdk-11.0.2/lib/javafx.media.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/Java/jdk-12.0.2/javafx-sdk-11.0.2/lib/javafx.swing.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/Java/jdk-12.0.2/javafx-sdk-11.0.2/lib/javafx.web.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/Java/jdk-12.0.2/javafx-sdk-11.0.2/lib/javafx-swt.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/Java/jdk-12.0.2/poi-4.1.1/poi-4.1.1.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/Java/jdk-12.0.2/poi-4.1.1/ooxml-lib/curvesapi-1.06.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/Java/jdk-12.0.2/poi-4.1.1/ooxml-lib/xmlbeans-3.1.0.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/Java/jdk-12.0.2/poi-4.1.1/poi-examples-4.1.1.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/Java/jdk-12.0.2/poi-4.1.1/poi-excelant-4.1.1.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/Java/jdk-12.0.2/poi-4.1.1/poi-ooxml-4.1.1.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/Java/jdk-12.0.2/poi-4.1.1/poi-ooxml-schemas-4.1.1.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/Java/jdk-12.0.2/poi-4.1.1/poi-scratchpad-4.1.1.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/Java/jdk-12.0.2/poi-4.1.1/lib/activation-1.1.1.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/Java/jdk-12.0.2/poi-4.1.1/lib/commons-codec-1.13.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/Java/jdk-12.0.2/poi-4.1.1/lib/commons-collections4-4.4.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/Java/jdk-12.0.2/poi-4.1.1/lib/commons-compress-1.19.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/Java/jdk-12.0.2/poi-4.1.1/lib/commons-logging-1.2.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/Java/jdk-12.0.2/poi-4.1.1/lib/commons-math3-3.6.1.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/Java/jdk-12.0.2/poi-4.1.1/lib/jaxb-api-2.3.1.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/Java/jdk-12.0.2/poi-4.1.1/lib/jaxb-core-2.3.0.1.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/Java/jdk-12.0.2/poi-4.1.1/lib/jaxb-impl-2.3.2.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/Java/jdk-12.0.2/poi-4.1.1/lib/junit-4.12.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/Java/jdk-12.0.2/poi-4.1.1/lib/log4j-1.2.17.jar"/>
+	<classpathentry kind="lib" path="C:/Users/ludew/git/TP2/TP-2/All Needed Libraries/activation-1.1.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/ludew/git/TP2/TP-2/All Needed Libraries/commons-codec-1.13.jar"/>
+	<classpathentry kind="lib" path="C:/Users/ludew/git/TP2/TP-2/All Needed Libraries/commons-collections4-4.4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/ludew/git/TP2/TP-2/All Needed Libraries/commons-compress-1.19.jar"/>
+	<classpathentry kind="lib" path="C:/Users/ludew/git/TP2/TP-2/All Needed Libraries/commons-logging-1.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/ludew/git/TP2/TP-2/All Needed Libraries/commons-math3-3.6.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/ludew/git/TP2/TP-2/All Needed Libraries/curvesapi-1.06.jar"/>
+	<classpathentry kind="lib" path="C:/Users/ludew/git/TP2/TP-2/All Needed Libraries/javafx.base.jar"/>
+	<classpathentry kind="lib" path="C:/Users/ludew/git/TP2/TP-2/All Needed Libraries/javafx.controls.jar"/>
+	<classpathentry kind="lib" path="C:/Users/ludew/git/TP2/TP-2/All Needed Libraries/javafx.fxml.jar"/>
+	<classpathentry kind="lib" path="C:/Users/ludew/git/TP2/TP-2/All Needed Libraries/javafx.graphics.jar"/>
+	<classpathentry kind="lib" path="C:/Users/ludew/git/TP2/TP-2/All Needed Libraries/javafx.media.jar"/>
+	<classpathentry kind="lib" path="C:/Users/ludew/git/TP2/TP-2/All Needed Libraries/javafx.swing.jar"/>
+	<classpathentry kind="lib" path="C:/Users/ludew/git/TP2/TP-2/All Needed Libraries/javafx.web.jar"/>
+	<classpathentry kind="lib" path="C:/Users/ludew/git/TP2/TP-2/All Needed Libraries/javafx-swt.jar"/>
+	<classpathentry kind="lib" path="C:/Users/ludew/git/TP2/TP-2/All Needed Libraries/jaxb-api-2.3.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/ludew/git/TP2/TP-2/All Needed Libraries/jaxb-core-2.3.0.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/ludew/git/TP2/TP-2/All Needed Libraries/jaxb-impl-2.3.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/ludew/git/TP2/TP-2/All Needed Libraries/junit-4.12.jar"/>
+	<classpathentry kind="lib" path="C:/Users/ludew/git/TP2/TP-2/All Needed Libraries/log4j-1.2.17.jar"/>
+	<classpathentry kind="lib" path="C:/Users/ludew/git/TP2/TP-2/All Needed Libraries/poi-4.1.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/ludew/git/TP2/TP-2/All Needed Libraries/poi-examples-4.1.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/ludew/git/TP2/TP-2/All Needed Libraries/poi-excelant-4.1.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/ludew/git/TP2/TP-2/All Needed Libraries/poi-ooxml-4.1.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/ludew/git/TP2/TP-2/All Needed Libraries/poi-ooxml-schemas-4.1.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/ludew/git/TP2/TP-2/All Needed Libraries/poi-scratchpad-4.1.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/ludew/git/TP2/TP-2/All Needed Libraries/xmlbeans-3.1.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
