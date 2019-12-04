@@ -27,8 +27,10 @@ public class ExcelIO { // Overloaded methods based on which class is being creat
 		projectSheet = projectWB.getSheetAt(0);
 		studentRI = studentSheet.rowIterator();
 		projectRI = projectSheet.rowIterator();
-		studentRow = studentRI.next(); //methods will iterate this to the next row 
+		studentRow = studentRI.next(); 
+		studentRow = studentRI.next(); // Don't read in the labels.
 		projectRow = projectRI.next();
+		projectRow = projectRI.next(); // Don't read in the labels.
 		//also set up the output stream in the same try block
 		teamStream = new FileOutputStream(new File("team builder results.xls"));	
 		}
@@ -42,9 +44,21 @@ public class ExcelIO { // Overloaded methods based on which class is being creat
 		Row row = studentRow;
 		studentCI = row.cellIterator();
 		Cell cell = studentCI.next();
-		newStudent.name = formatter.formatCellValue(cell); // Will actually set the various members in student once we see the formats we're working with
-		cell = studentCI.next(); // Iterate as many times as appropriate once we see the formats
+		newStudent.name = formatter.formatCellValue(cell); 
+		cell = studentCI.next();
+		newStudent.id = Integer.parseInt(formatter.formatCellValue(cell));
+		cell = studentCI.next();
+		newStudent.major = formatter.formatCellValue(cell);
+		cell = studentCI.next();
 		newStudent.gpa = Double.parseDouble(formatter.formatCellValue(cell));
+		
+		//Will need to handle the three potentially empty cells somewhere in here...
+		
+		while (studentCI.hasNext()) { 
+			// Will work for any number of preferred projects, so long as the list is the last thing in the input file.
+			cell = studentCI.next();
+			newStudent.preferredProjects.add(formatter.formatCellValue(cell));
+		}
 		//check if there is another student to read
 		if (studentRI.hasNext()) {
 			studentRow = studentRI.next();
@@ -59,15 +73,12 @@ public class ExcelIO { // Overloaded methods based on which class is being creat
 		Row row = projectRow;
 		projectCI = row.cellIterator();
 		Cell cell = projectCI.next();
-		newProject.projectName = formatter.formatCellValue(cell); // Will actually set the various members in student once we see the formats we're working with
-		cell = projectCI.next(); // Iterate as many times as appropriate once we see the formats
-		newProject.requiredMembers.add(formatter.formatCellValue(cell));
-		cell = projectCI.next(); // Iterate as many times as appropriate once we see the formats
-		newProject.requiredMembers.add(formatter.formatCellValue(cell));
-		cell = projectCI.next(); // Iterate as many times as appropriate once we see the formats
-		newProject.requiredMembers.add(formatter.formatCellValue(cell));
-		cell = projectCI.next(); // Iterate as many times as appropriate once we see the formats
-		newProject.requiredMembers.add(formatter.formatCellValue(cell));
+		newProject.projectName = formatter.formatCellValue(cell);
+		while (projectCI.hasNext()) { 
+			// Iterates as long as there is another non-blank cell in the row, meaning it should be able to handle teams of various sizes
+			cell = projectCI.next(); 
+			newProject.requiredMembers.add(formatter.formatCellValue(cell));
+		}
 		//check if there is another project to read
 		if (projectRI.hasNext()) {
 			projectRow = projectRI.next();
