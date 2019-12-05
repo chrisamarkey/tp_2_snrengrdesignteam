@@ -10,8 +10,10 @@ public class Student {
 	public double gpa;
 	public String major;
 	public String favProject;
+	public int projectWeight;
 	public String preferredProj;
 	public LinkedList<Integer> enemyIDs;
+	public LinkedList<String> enemyNames;
 	public LinkedList<Student> studentMakeUp;
 	public LinkedList<String> studentConfig;
 	public LinkedList<String> preferredProjects;
@@ -22,6 +24,7 @@ public class Student {
 		this.gpa = 4.0;
 		this.major = "software engineering";
 		this.enemyIDs = new LinkedList<>();
+		this.preferredProjects = new LinkedList<>();
 	}
 
 	public Student(String name, int id, double gpa, String major, LinkedList<Integer> enemyIDs, String favProject, LinkedList<String> preferredProjects) {

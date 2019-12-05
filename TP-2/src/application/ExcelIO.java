@@ -19,8 +19,8 @@ public class ExcelIO { // Overloaded methods based on which class is being creat
 	private Iterator<Cell> studentCI, projectCI;
 	ExcelIO() {
 		try {
-		FileInputStream studentStream = new FileInputStream(new File("student input file.xls"));
-		FileInputStream projectStream = new FileInputStream(new File("project input file.xls"));
+		FileInputStream studentStream = new FileInputStream(new File("Student Input File.xls"));
+		FileInputStream projectStream = new FileInputStream(new File("Project Input File.xls"));
 		studentWB = new HSSFWorkbook(studentStream);
 		projectWB = new HSSFWorkbook(projectStream);
 		studentSheet = studentWB.getSheetAt(0);
@@ -51,9 +51,23 @@ public class ExcelIO { // Overloaded methods based on which class is being creat
 		newStudent.major = formatter.formatCellValue(cell);
 		cell = studentCI.next();
 		newStudent.gpa = Double.parseDouble(formatter.formatCellValue(cell));
-		
-		//Will need to handle the three potentially empty cells somewhere in here...
-		
+		// Possibly blank columns have to be handled differently.
+		cell = row.getCell(4, Row.MissingCellPolicy.RETURN_BLANK_AS_NULL);
+		if (cell != null) {
+			newStudent.enemyNames.add(formatter.formatCellValue(cell));
+			Cell iteratorHelper1 = studentCI.next(); //The iterator needs to keep hopping along if it's going to pick up once we get through these cells, but in a way that doesn't alter the main functionally. 
+			//So create a dummy cell object to hold the hop until we're ready to use the iterator properly again.
+		}
+		cell = row.getCell(5, Row.MissingCellPolicy.RETURN_BLANK_AS_NULL);
+		if (cell != null) {
+			newStudent.favProject = formatter.formatCellValue(cell);
+			Cell iteratorHelper2 = studentCI.next();
+		}
+		cell = row.getCell(6, Row.MissingCellPolicy.RETURN_BLANK_AS_NULL);
+		if (cell != null) {
+			newStudent.projectWeight = Integer.parseInt(formatter.formatCellValue(cell));
+			Cell iteratorHelper3 = studentCI.next();
+		}		
 		while (studentCI.hasNext()) { 
 			// Will work for any number of preferred projects, so long as the list is the last thing in the input file.
 			cell = studentCI.next();
