@@ -3,42 +3,62 @@ package application;
 import java.util.*;
 
 public class TeamBuilder {
-	
+
 	public LinkedList<Student> studentList;
 	public LinkedList<Project> projectList;
-	public String favProject; 
+	public String favProject;
 	public Student student;
 	public Project project;
-  //	int intArray[]; int[] intArray = new int[20];
-	
-//	1. Randomly search StudentList (possibly sequentially select initially) for project priorities one at a time. 
+
+//	1. Sequentially search StudentList for project priorities one at a time. 
 //	   Assign Student to the priority project if it is available for that major as long as their enemy is not assigned to that project.
 //	   Continue through StudentList until complete.
 //	   Save the Student ID for the assigned Student in an array.
-	
+//	   int[] intArray = new int[20];
+
 	public TeamBuilder(LinkedList<Student> studentList, LinkedList<Project> projectList) {
 		this.studentList = studentList;
 		this.projectList = projectList;
 	}
-	
-	public void assignFavProject(Student student) {
+
+	public void assignFavProject(LinkedList<Student> studentList, LinkedList<Project> projectList) {
 		for (int i = 0; i < studentList.size(); i++) {
-			student = studentList.get(i);			
+			student = studentList.get(i);
 			favProject = student.getFavProject(student);
-			
+
 			for (int j = 0; j < projectList.size(); j++) {
-			project = projectList.get(j);
-			for (int k = 0; j < project.getRequiredMembers(project).size(); k++) {
-				
-			if (favProject == project.getProjectName (project) & project.getRequiredMembers(project).get(k) == student.getStudentMajor(student)) {
-			// set student for project, set project for student and remove major from project so no other student can be assigned to that project's role
-				
-			}
-			}
+				project = projectList.get(j);
+
+				for (int k = 0; j < project.getRequiredMembers(project).size(); k++) {
+
+					if (favProject == project.getProjectName(project)
+							& project.getToBeAssignedMembers(project).get(k) == student.getStudentMajor(student)
+							& checkForEnemies(student, project) == false) {
+						// set project for student
+						student.setAssignedProject(project.getProjectName(project)); // 12/5/19
+						// remove major from project's requiredMembers List so that no other student can
+						// be assigned to that project's role
+						project.removeToBeAssignedMembers(student); // 12/5/19
+						// set student for project
+						project.setRequiredMembers(student);
+					}
+				}
 			}
 		}
 	}
-	
+
+	public boolean checkForEnemies(Student student, Project project) {
+		this.student = student;
+		this.project = project;
+		for (int i = 0; i < student.getStudentEnemyIDs(student).size(); i++) {
+			for (int j = 0; j < project.getActualMembers(project).size(); j++) {
+				if (student.getStudentID(student) == project.getActualMembers(project).get(i).getStudentID(student)) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
 
 //	2. Next. compile StudentList preferred projects to count # of Student who prefer particular projects.
 //	   Store the Student choices per project ID. 
@@ -46,11 +66,25 @@ public class TeamBuilder {
 //	     that does not have their enemy assigned to it and has an open slot for their major.
 //	   Continue through StudentList until complete.
 
-//  3. Calculate each projects' students' average GPA. 
+//3. Calculate each projects' students' average GPA. 
 //	   Calculate the average and standard deviation of all projects' students GPAs.
-//     Report this data for manual adjustments.
+//  Report this data for manual adjustments.
 
-//  4. List the students who could not be assigned since their were no open project slots for their major. 
+//4. List the students who could not be assigned since their were no open project slots for their major. 
 //	   **Non-happy path** Probably skip this step at first.
-	
+
+	public static void main(String[] args) {
+//		Student(String name, int id, double gpa, String major, LinkedList<Integer> enemyIDs, String favProject, LinkedList<String> preferredProjects, String assignedProject)
+		Student student1 = new Student("student1", 1111, 4.0, "ME", new LinkedList<Integer>(), "Shuttle", new LinkedList<String>(), "");
+//		Project(String project, LinkedList<String> requiredMembers, LinkedList<Student> actualMembers)
+//		Project project1 = new Project(seniorProject1, project1Degrees, studentGroup1);
+		Project project1 = new Project("Shuttle", new LinkedList<String>(), new LinkedList<Student>());
+		LinkedList<Student> studentList = new LinkedList<Student>();
+		studentList.add(student1);
+		LinkedList<Project> projectList = new LinkedList<Project>();
+		projectList.add(project1);
+
+		TeamBuilder team1 = new TeamBuilder(studentList, projectList);
+		team1.assignFavProject(studentList, projectList);
+	}
 }
