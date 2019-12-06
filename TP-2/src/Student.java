@@ -43,8 +43,8 @@ public class Student {
 		this.assignedProj = assignedProject;
 	}
 	
-	public String getAssignedProject(String assignedProject) { // Added 12/4/19
-		this.assignedProj = assignedProject;
+	public String getAssignedProject(Student student) { // Added 12/4/19
+		this.assignedProj = student.assignedProj;
 		return this.assignedProj;
 	}
 
