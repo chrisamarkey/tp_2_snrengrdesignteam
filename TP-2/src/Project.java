@@ -1,5 +1,7 @@
 //Chris Markey
+
 package application;
+
 import java.util.LinkedList;
 
 public class Project
@@ -7,7 +9,9 @@ public class Project
 
 	public String projectName;
 	public LinkedList<String> requiredMembers;
+	public LinkedList<String> toBeAssignedMembers; // Added 12/5/19
 	public LinkedList<Student> actualMembers;
+	public String removedProj; // Added 12/5/19
 	public int numInterestedProj;
 	public int projectID;
 	public float avgGPA;
@@ -15,33 +19,66 @@ public class Project
 	public Project() {
 		this.projectName = "projectName";
 		this.requiredMembers = new LinkedList<>();
+		this.toBeAssignedMembers = new LinkedList<>(); // Added 12/5/19
 		this.actualMembers = new LinkedList<>();
 	}
 
-	public Project(String project, LinkedList<String> requiredMembers, LinkedList<Student> actualMembers, int numInterestedProj, int projectID) {
+	public Project(String project, LinkedList<String> requiredMembers, LinkedList<Student> actualMembers) {
 		this.projectName = project;
-		this.projectID = projectID;
+//		this.projectID = projectID;
 		this.requiredMembers = requiredMembers;
+		this.toBeAssignedMembers = requiredMembers; //Added 12/5/19
 		this.actualMembers = actualMembers;
-		this.numInterestedProj = numInterestedProj;
+//		this.numInterestedProj = numInterestedProj; // Removed 12/5/19
 	}
 	
-	public String getProjectName(Project projectList) {
-		this.projectName = projectList.projectName;
+	public void setRequiredMembers(Student student) { // Added 12/5/19
+		this.actualMembers.add(student);
+	}
+	
+	public String getProjectName(Project project) { // 12/4-19 Changed projectList to project
+		this.projectName = project.projectName;
 		return this.projectName;
 	}
 
-	public Integer getProjectID(Project projectList) {
-		this.projectID = projectList.projectID;
+	public Integer getProjectID(Project project) { // 12/4-19 Changed projectList to project
+		this.projectID = project.projectID;
 		return this.projectID;
 	}
 	
-	public LinkedList<String> getRequiredMembers(Project projectList) {
-		this.requiredMembers = projectList.requiredMembers;
+	public LinkedList<String> getRequiredMembers(Project project) { // 12/4/19 Changed projectList to project
+		this.requiredMembers = project.requiredMembers;
 		return this.requiredMembers;
+	}
+	
+	public LinkedList<String> getToBeAssignedMembers(Project project){ // 12/5/19
+		this.toBeAssignedMembers = project.toBeAssignedMembers;
+		return this.toBeAssignedMembers;
+	}
+	
+	public LinkedList<Student> getActualMembers(Project project) { // 12/4/19 Changed projectList to project
+		this.actualMembers = project.actualMembers;
+		return this.actualMembers;
+	}
+	
+	public void removeRequiredMembers(String removedProject) { // Added 12/5/19
+		this.removedProj = removedProject;
+		this.removedProj = null;
+	}
+	
+	public void removeToBeAssignedMembers(Student student) {
+		for (int i = 0; i < this.toBeAssignedMembers.size(); i++) {
+			if (student.getStudentMajor(student) == this.toBeAssignedMembers.get(i)) {
+				this.toBeAssignedMembers.remove(i);
+				break;
+			}
+		}
 	}
 
 	public static void main(String[] args) {
+		
+		String s1AssignedProj;
+		
 		String seniorProject1 = "Design a autonomous vehicle";
 		String seniorProject2 = "Design a new drill bit to drill through the Bakken shale formation";
 		String seniorProject3 = "Design a robot to act as a seeing eye dog";
@@ -70,30 +107,34 @@ public class Project
 		s1PreferredProj.add("Design a new drill bit to drill through the Bakken shale formation");
 		s1PreferredProj.add("Design a robot to act as a seeing eye dog");
 		
-		Student student1 = new Student("Craig", 111, 4.0, "EE", student1Enemies, "favProject", s1PreferredProj);
-//		Object[] array = student1.toArray();
+		// Student(String name, int id, double gpa, String major, LinkedList<Integer> enemyIDs, String favProject,
+		// LinkedList<String> preferredProjects, String assignedProject)
+		
+		Student student1 = new Student("Craig", 111, 4.0, "EE", student1Enemies, "favProject", s1PreferredProj, "");
+//		Object[] array = student1.toArray()
 //		System.out.println(student1); // Possibly a toString method would allow this information to be printed out.
 		LinkedList<Integer> student2Enemies = new LinkedList<Integer>();
 		student2Enemies.add(555);
 		student2Enemies.add(666);
 		student2Enemies.add(777);
 		
-		Student student2 = new Student("Andy", 111, 4.0, "CompE", student2Enemies, "favProject", s1PreferredProj);
+		Student student2 = new Student("Andy", 111, 4.0, "CompE", student2Enemies, "favProject", s1PreferredProj, "");
 		LinkedList<Integer> student3Enemies = new LinkedList<Integer>();
 		student3Enemies.add(888);
 		student3Enemies.add(999);
 		student3Enemies.add(000);
-		Student student3 = new Student("Chris", 111, 4.0, "ME", student3Enemies, "favProject", s1PreferredProj);
+		Student student3 = new Student("Chris", 111, 4.0, "ME", student3Enemies, "favProject", s1PreferredProj, "");
 
 		LinkedList<Student> studentGroup1 = new LinkedList<Student>();
 		studentGroup1.add(student1);
 		studentGroup1.add(student2);
 		studentGroup1.add(student3);
 		
-		int project1_ID = 1111;
-		int numInterestedProj_1 = 5;
+//		int project1_ID = 1111;
+//		int numInterestedProj_1 = 5;
 		
-		Project project1 = new Project(seniorProject1, project1Degrees, studentGroup1, project1_ID, numInterestedProj_1);
+		// public Project(String project, LinkedList<String> requiredMembers, LinkedList<Student> actualMembers)
+		Project project1 = new Project(seniorProject1, project1Degrees, studentGroup1);
 
 		System.out.println("Student1 name = " + student1.getStudentName(student1));
 		System.out.println("Student1 id = " + student1.getStudentID(student1));
