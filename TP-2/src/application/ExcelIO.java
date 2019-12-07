@@ -127,10 +127,10 @@ public class ExcelIO { // Overloaded methods based on which class is being creat
 		CreationHelper helper = teamWB.getCreationHelper();
 		//Create styles for later formatting
 		CellStyle black = teamWB.createCellStyle();
-		black.setFillBackgroundColor(IndexedColors.BLACK.index);
+		black.setFillForegroundColor(IndexedColors.BLACK.index);
 		black.setFillPattern(FillPatternType.SOLID_FOREGROUND);
 		CellStyle yellow = teamWB.createCellStyle();
-		yellow.setFillBackgroundColor(IndexedColors.YELLOW.index);
+		yellow.setFillForegroundColor(IndexedColors.YELLOW.index);
 		yellow.setFillPattern(FillPatternType.SOLID_FOREGROUND);
 		teamRow = teamSheet.createRow(rowNumber);
 		teamRow.createCell(0).setCellValue(helper.createRichTextString(project.projectName));
@@ -140,7 +140,7 @@ public class ExcelIO { // Overloaded methods based on which class is being creat
 		if (project.actualMembers.size() < 6) {
 			for (int i = project.actualMembers.size() + 1; i <= 6; i++) { // questionable conditional, works but sloppy?
 				teamRow.createCell(i).setBlank();
-				if (project.actualMembers.size() == project.requiredMembers.size()) {
+				if (i > project.requiredMembers.size()) {
 					teamRow.getCell(i).setCellStyle(black);
 				}
 				else {
@@ -154,7 +154,7 @@ public class ExcelIO { // Overloaded methods based on which class is being creat
 		if (project.actualMembers.size() < 6) {
 			for ( int i = project.actualMembers.size() + 7; i <= 12; i++) { // questionable conditional, works but sloppy?
 				teamRow.createCell(i).setBlank();
-				if (project.actualMembers.size() == project.requiredMembers.size()) {
+				if ((i - 6) > project.requiredMembers.size()) {
 					teamRow.getCell(i).setCellStyle(black);
 				}
 				else {
@@ -198,15 +198,15 @@ public class ExcelIO { // Overloaded methods based on which class is being creat
 		ProjectReader projectReader = new ProjectReader();
 		LinkedList<Student> studentList = studentReader.createStudents(readerWriter);
 		LinkedList<Project> projectList = projectReader.createProjects(readerWriter);
-		projectList.get(0).actualMembers.add(studentList.get(0));
-		projectList.get(0).actualMembers.add(studentList.get(1));
-		projectList.get(0).actualMembers.add(studentList.get(2));
-		projectList.get(0).actualMembers.add(studentList.get(3));
+		projectList.get(17).actualMembers.add(studentList.get(0));
+		projectList.get(17).actualMembers.add(studentList.get(1));
+		projectList.get(17).actualMembers.add(studentList.get(2));
+		projectList.get(17).actualMembers.add(studentList.get(3));
 		readerWriter.prepOutputFile();
-		readerWriter.writeNextRow(projectList.get(0), 1);
-		readerWriter.writeNextRow(projectList.get(0), 2);
-		readerWriter.writeNextRow(projectList.get(0), 3);
-		readerWriter.writeNextRow(projectList.get(0), 4);
+		readerWriter.writeNextRow(projectList.get(17), 1);
+		readerWriter.writeNextRow(projectList.get(17), 2);
+		readerWriter.writeNextRow(projectList.get(17), 3);
+		readerWriter.writeNextRow(projectList.get(17), 4);
 		readerWriter.saveNewFile();
 	}
 }
