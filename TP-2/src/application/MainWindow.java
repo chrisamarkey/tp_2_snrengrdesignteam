@@ -21,57 +21,8 @@ public class MainWindow
 {
 	LinkedList<Student> studentList;
 	LinkedList<Project> projectList;
-	
-	private void makeTestData_projects()
-	{
-		projectList = new LinkedList<>();
-		projectList.add(new Project("project0", 0, 0, new HashMap<>(), new LinkedList<Student>()));
-		projectList.add(new Project("project1", 1, 0, new HashMap<>(), new LinkedList<Student>()));
-		projectList.add(new Project("project2", 2, 0, new HashMap<>(), new LinkedList<Student>()));
-
-		projectList.get(0).addRequiredMembers("Electrical Engineer", 1);
-		projectList.get(0).addRequiredMembers("Electrical Engineer", 1);
-		projectList.get(0).addRequiredMembers("Electrical Engineer", 2);
-		projectList.get(0).addRequiredMembers("Mechanical Engineer", 2);
-		projectList.get(0).addRequiredMembers("Civil Engineer", 1);
-
-		projectList.get(1).addRequiredMembers("Electrical Engineer", 2);
-		projectList.get(1).addRequiredMembers("Mechanical Engineer", 4);
-		projectList.get(1).addRequiredMembers("Civil Engineer", 3);
-
-		projectList.get(2).addRequiredMembers("Electrical Engineer", 2);
-		projectList.get(2).addRequiredMembers("Mechanical Engineer", 1);
-		projectList.get(2).addRequiredMembers("Civil Engineer", 2);
-		
-	}
-	
-	private void makeTestData_students()
-	{
-		studentList = new LinkedList<>();
-		
-		//studentList.add(new Student(name, id, gpa, major, enemyIDs, favProject, preferredProjects));
-		studentList.add(new Student("ee0", 10, 3.0, "Electrical Engineer", "", "", new LinkedList<Integer>(), new LinkedList<String>()));
-		studentList.add(new Student("ee1", 11, 3.0, "Electrical Engineer", "", "", new LinkedList<Integer>(), new LinkedList<String>()));
-		studentList.add(new Student("ee2", 12, 3.0, "Electrical Engineer", "", "", new LinkedList<Integer>(), new LinkedList<String>()));
-		studentList.add(new Student("ee3", 13, 3.0, "Electrical Engineer", "", "", new LinkedList<Integer>(), new LinkedList<String>()));
-		studentList.add(new Student("ee4", 14, 3.0, "Electrical Engineer", "", "", new LinkedList<Integer>(), new LinkedList<String>()));
-		studentList.add(new Student("ee5", 15, 3.0, "Electrical Engineer", "", "", new LinkedList<Integer>(), new LinkedList<String>()));
-		
-		studentList.add(new Student("me0", 110, 3.0, "Mechanical Engineer", "", "", new LinkedList<Integer>(), new LinkedList<String>()));
-		studentList.add(new Student("me1", 111, 3.0, "Mechanical Engineer", "", "", new LinkedList<Integer>(), new LinkedList<String>()));
-		studentList.add(new Student("me2", 112, 3.0, "Mechanical Engineer", "", "", new LinkedList<Integer>(), new LinkedList<String>()));
-		studentList.add(new Student("me3", 113, 3.0, "Mechanical Engineer", "", "", new LinkedList<Integer>(), new LinkedList<String>()));
-		studentList.add(new Student("me4", 114, 3.0, "Mechanical Engineer", "", "", new LinkedList<Integer>(), new LinkedList<String>()));
-		
-
-		studentList.add(new Student("ce0", 1110, 3.0, "Mechanical Engineer", "", "", new LinkedList<Integer>(), new LinkedList<String>()));
-		studentList.add(new Student("ce1", 1111, 3.0, "Mechanical Engineer", "", "", new LinkedList<Integer>(), new LinkedList<String>()));
-		studentList.add(new Student("ce0", 1112, 3.0, "Mechanical Engineer", "", "", new LinkedList<Integer>(), new LinkedList<String>()));
-		
-	}
 
 	String readStudentsFilename;
-	String readPreferencesFilename;
 	String readProjectsFilename;
 	int studentsRead;
 	double averageGPA;
@@ -88,8 +39,6 @@ public class MainWindow
 	
 	Button readStudentsButton;
 	TextField readStudentsFilenameTextField;
-	Button readPreferencesButton;
-	TextField readPreferencesFilenameTextField;
 	Button readProjectsButton;
 	TextField readProjectsFilenameTextField;
 	Label studentsReadLabel;
@@ -125,7 +74,6 @@ public class MainWindow
 	public MainWindow()
 	{		
 		readStudentsFilename = "";		
-		readPreferencesFilename = "";		
 		readProjectsFilename = "";
 		studentsRead = 0;
 		averageGPA = 0.0;
@@ -152,7 +100,6 @@ public class MainWindow
 		stage.setTitle("Engineering Team Builder");
 		stage.setScene(new Scene(mainLayout));
 		mainLayout.requestFocus();	//this line prevents any field from automatically grabbing focus
-//		stage.sizeToScene();
 		
 		//paint window
 		stage.show();
@@ -164,16 +111,16 @@ public class MainWindow
 		{
 			public void handle(ActionEvent event)
 			{
-				FileChooser fileChooser = new FileChooser();
-				fileChooser.setTitle("Open Students List");
-				FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Excel files (*.xlsx, *.csv, *.xls)", "*.csv", "*.xls", "*.xlsx");
-				fileChooser.getExtensionFilters().add(extFilter);
-				File file = fileChooser.showOpenDialog(new Stage());
-				if (file != null)
-				{
+//				FileChooser fileChooser = new FileChooser();
+//				fileChooser.setTitle("Open Students List");
+//				FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Excel files (*.xlsx, *.csv, *.xls)", "*.csv", "*.xls", "*.xlsx");
+//				fileChooser.getExtensionFilters().add(extFilter);
+//				File file = fileChooser.showOpenDialog(new Stage());
+//				if (file != null)
+//				{
 //					System.out.println(file.getName());
-					readStudentsFilename = file.getName();
-				}
+//					readStudentsFilename = file.getName();
+//				}
 				
 //				makeTestData_students();
 				studentList = SampleData.getStudents();
@@ -209,8 +156,8 @@ public class MainWindow
 				}
 				
 				averageGPA /= studentsRead;
-				GPArangeLow = averageGPA - 0.25;
-				GPArangeHigh = averageGPA + 0.25;
+				GPArangeLow = averageGPA - 0.2;
+				GPArangeHigh = averageGPA + 0.2;
 				
 				updateTextFields();
 			}
@@ -223,16 +170,16 @@ public class MainWindow
 		{
 			public void handle(ActionEvent event)
 			{
-				FileChooser fileChooser = new FileChooser();
-				fileChooser.setTitle("Open Students List");
-				FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Excel files (*.xlsx, *.csv, *.xls)", "*.csv", "*.xls", "*.xlsx");
-				fileChooser.getExtensionFilters().add(extFilter);
-				File file = fileChooser.showOpenDialog(new Stage());
-				if (file != null)
-				{
-//					System.out.println(file.getName());
-					readProjectsFilename = file.getName();
-				}
+//				FileChooser fileChooser = new FileChooser();
+//				fileChooser.setTitle("Open Students List");
+//				FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Excel files (*.xlsx, *.csv, *.xls)", "*.csv", "*.xls", "*.xlsx");
+//				fileChooser.getExtensionFilters().add(extFilter);
+//				File file = fileChooser.showOpenDialog(new Stage());
+//				if (file != null)
+//				{
+////					System.out.println(file.getName());
+//					readProjectsFilename = file.getName();
+//				}
 				
 //				makeTestData_projects();
 				projectList = SampleData.getProjects();
@@ -252,7 +199,7 @@ public class MainWindow
 				for (Project project : projectList)
 				{
 					for (Entry<String, Integer> entry : project.getRequiredMembers().entrySet()) {
-					    System.out.println(entry.getKey() + " = " + entry.getValue());
+//					    System.out.println(entry.getKey() + " = " + entry.getValue());
 					    if (entry.getKey().equals("Electrical Engineer"))
 						{
 							electricalEngineersRequired += entry.getValue();
@@ -274,28 +221,6 @@ public class MainWindow
 		};
 	}
 	
-	private EventHandler<ActionEvent> readStudentPreferences()
-	{
-		return new EventHandler<ActionEvent>()
-		{
-			public void handle(ActionEvent event)
-			{				
-				FileChooser fileChooser = new FileChooser();
-				fileChooser.setTitle("Open Students Preferences");
-				FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Excel files (*.xlsx, *.csv, *.xls)", "*.csv", "*.xls", "*.xlsx");
-				fileChooser.getExtensionFilters().add(extFilter);
-				File file = fileChooser.showOpenDialog(new Stage());
-				if (file != null)
-				{
-//					System.out.println(file.getName());
-					readPreferencesFilename = file.getName();
-				}
-
-				updateTextFields();
-			}
-		};
-	}
-	
 	private EventHandler<ActionEvent> buildTeams()
 	{
 		return new EventHandler<ActionEvent>()
@@ -304,17 +229,21 @@ public class MainWindow
 			{
 				successFailMessage = "test";
 				
-				updateTextFields();
+//				FileChooser fileChooser = new FileChooser();
+//				fileChooser.setTitle("Save Project Teams");
+//				FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Excel files (*.xlsx, *.csv, *.xls)", "*.csv", "*.xls", "*.xlsx");
+//				fileChooser.getExtensionFilters().add(extFilter);
+//				File file = fileChooser.showSaveDialog(new Stage());
+//				if (file != null)
+//				{
+////					System.out.println(file.getName());
+//				}
 				
-				FileChooser fileChooser = new FileChooser();
-				fileChooser.setTitle("Save Project Teams");
-				FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Excel files (*.xlsx, *.csv, *.xls)", "*.csv", "*.xls", "*.xlsx");
-				fileChooser.getExtensionFilters().add(extFilter);
-				File file = fileChooser.showSaveDialog(new Stage());
-				if (file != null)
-				{
-					System.out.println(file.getName());
-				}
+				TeamBuilder teamBuilder = new TeamBuilder(projectList, studentList, GPArangeLow, GPArangeHigh);
+				
+				teamBuilder.buildTeams();
+
+				updateTextFields();
 			}
 		};
 	}
@@ -322,14 +251,11 @@ public class MainWindow
 	public void updateTextFields()
 	{
 		readStudentsFilenameTextField.setText(readStudentsFilename);
-		readPreferencesFilenameTextField.setText(readPreferencesFilename);
 		readProjectsFilenameTextField.setText(readProjectsFilename);
 		studentsReadTextField.setText(Integer.toString(studentsRead));
 		averageGPATextField.setText(String.format("%.2f", averageGPA));
 		rangeGPAlowTextField.setText(String.format("%.2f", GPArangeLow));
 		rangeGPAhighTextField.setText(String.format("%.2f", GPArangeHigh));
-//		rangeGPAlowTextField.setText(Double.toString(GPArangeLow));
-//		rangeGPAhighTextField.setText(Double.toString(GPArangeHigh));
 		projectsReadTextField.setText(Integer.toString(projectsRead));
 		electricalEngineersReadTextField.setText(Integer.toString(electricalEngineersRead));
 		electricalEngineersRequiredTextField.setText(Integer.toString(electricalEngineersRequired));
@@ -343,22 +269,6 @@ public class MainWindow
 	public GridPane buildLayout()
 	{
 		GridPane myGridPane = new GridPane();
-		/*
-		 button, load excel file
-		textbox, students read
-		textbox, projects read
-		textbox, electrical engineers required
-		textbox, electrical engineers available
-		.
-		.
-		.
-		textbox, average gpa
-		slider/textbox, team gpa range
-		button, create teams
-		textbox, result - success/fail
-		textbox, fail message (cause for) 
-		 
-		 */
 		
 		int verticalIndex = 0;
 		int textfieldWidth = 100;
@@ -388,29 +298,7 @@ public class MainWindow
 		GridPane.setConstraints(readStudentsFilenameTextField, 1, verticalIndex++);
 		GridPane.setMargin(readStudentsFilenameTextField, new Insets(5, 5, 5, 5));
 		myGridPane.getChildren().add(readStudentsFilenameTextField);
-		
-//		HBox readStudentsHBox = new HBox();
-//		readStudentsHBox.getChildren().addAll(readStudentsButton, readStudentsFilenameTextField);
-//		GridPane.setConstraints(readStudentsHBox, 0, verticalIndex++);
-//		GridPane.setMargin(readStudentsHBox, new Insets(5, 5, 5, 5));
-//		myGridPane.getChildren().add(readStudentsHBox);
-
-		readPreferencesButton = new Button("Read Preferences");
-		action = readStudentPreferences();
-		readPreferencesButton.setOnAction(action);
-		GridPane.setConstraints(readPreferencesButton, 0, verticalIndex);
-		GridPane.setMargin(readPreferencesButton, new Insets(5, 5, 5, 5));
-		myGridPane.getChildren().add(readPreferencesButton);
-		
-		readPreferencesFilenameTextField = new TextField();
-		readPreferencesFilenameTextField.setEditable(false);
-		readPreferencesFilenameTextField.setPrefWidth(textfieldWidth*2);
-		readPreferencesFilenameTextField.setStyle("-fx-text-inner-color: grey;");
-		GridPane.setColumnSpan(readPreferencesFilenameTextField, 2);
-		GridPane.setConstraints(readPreferencesFilenameTextField, 1, verticalIndex++);
-		GridPane.setMargin(readPreferencesFilenameTextField, new Insets(5, 5, 5, 5));
-		myGridPane.getChildren().add(readPreferencesFilenameTextField);
-		
+				
 		readProjectsButton = new Button("Read Projects");
 		action = readProjects();
 		readProjectsButton.setOnAction(action);
@@ -550,16 +438,20 @@ public class MainWindow
 		myGridPane.getChildren().add(rangeGPALabel);
 		
 		rangeGPAlowTextField = new TextField();
+		rangeGPAlowTextField.focusedProperty().addListener((ov, oldV, newV) -> {
+	           if (!newV) { // focus lost
+	        	   GPArangeLow = Double.parseDouble(rangeGPAlowTextField.getText()); 
+	           }
+	        });
 		rangeGPAlowTextField.setPrefWidth(textfieldWidth/2);
-//		GridPane.setConstraints(rangeGPAlowTextField, 1, verticalIndex++);
-//		GridPane.setMargin(rangeGPAlowTextField, new Insets(5, 5, 5, 5));
-//		myGridPane.getChildren().add(rangeGPAlowTextField);
 		
 		rangeGPAhighTextField = new TextField();
 		rangeGPAhighTextField.setPrefWidth(textfieldWidth/2);
-//		GridPane.setConstraints(rangeGPAhighTextField, 1, verticalIndex++);
-//		GridPane.setMargin(rangeGPAhighTextField, new Insets(5, 5, 5, 5));
-//		myGridPane.getChildren().add(rangeGPAhighTextField);
+		rangeGPAhighTextField.focusedProperty().addListener((ov, oldV, newV) -> {
+	           if (!newV) { // focus lost
+	        	   GPArangeHigh = Double.parseDouble(rangeGPAhighTextField.getText()); 
+	           }
+	        });
 		
 		HBox gpaRangeHBox = new HBox();
 		gpaRangeHBox.getChildren().addAll(rangeGPAlowTextField, rangeGPAhighTextField);

@@ -5,21 +5,20 @@ package application;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map.Entry;
-import org.apache.poi.ss.formula.functions.Countif.StringMatcher;
 
 public class Project
 {
 
-	private String projectName;
-	private int projectID;
+	private String name;
+	private int id;
 	private int numInterested;
 	private HashMap<String, Integer> requiredMembers;
 	private LinkedList<Student> actualMembers;
 	// get avgGPA
 
 	public Project() {
-		projectName = "";
-		projectID = 0;
+		name = "";
+		id = 0;
 		numInterested = 0;
 		requiredMembers = new HashMap<>();
 		actualMembers = new LinkedList<>();
@@ -30,8 +29,8 @@ public class Project
 				   int numInterested,
 				   HashMap<String, Integer> required,
 				   LinkedList<Student> actual) {
-		this.projectName = name;
-		this.projectID = ID;
+		this.name = name;
+		this.id = ID;
 		this.numInterested = numInterested; // Removed 12/5/19
 		this.requiredMembers = required;
 		this.actualMembers = actual;
@@ -39,11 +38,19 @@ public class Project
 	
 	
 	public String getName() { // 12/4-19 Changed projectList to project
-		return this.projectName;
+		return this.name;
+	}
+	
+	public void setName(String input) {
+		this.name = input;
 	}
 
 	public Integer getID() { // 12/4-19 Changed projectList to project
-		return this.projectID;
+		return this.id;
+	}
+	
+	public void setName(int input) {
+		this.id = input;
 	}
 
 	public Integer getNumInterested() { // 12/4-19 Changed projectList to project
@@ -84,7 +91,21 @@ public class Project
 		this.actualMembers.remove(student);
 	}
 	
+	public double getTeamGPA() {
+		double totalGPA = 0;
+		
+		if (actualMembers.isEmpty())
+		{
+			return 0;
+		}
+		
+		for (Student student : actualMembers)
+		{
+			totalGPA += student.getGPA();
+		}
 
+		return (totalGPA/actualMembers.size());
+	}
 	
 	
 	public static void main(String[] args) {
@@ -110,29 +131,29 @@ public class Project
 		
 		LinkedList<Student> studentList = new LinkedList<>();
 		
-		studentList.add(new Student("EE0", 10, 4.0, "Electrical Engineer", "", "", new LinkedList<Integer>(), new LinkedList<String>()));
-		studentList.add(new Student("EE1", 11, 4.0, "Electrical Engineer", "", "", new LinkedList<Integer>(), new LinkedList<String>()));	
-		studentList.add(new Student("EE2", 12, 4.0, "Electrical Engineer", "", "", new LinkedList<Integer>(), new LinkedList<String>()));	
-		studentList.add(new Student("EE3", 13, 4.0, "Electrical Engineer", "", "", new LinkedList<Integer>(), new LinkedList<String>()));	
-		studentList.add(new Student("EE4", 14, 4.0, "Electrical Engineer", "", "", new LinkedList<Integer>(), new LinkedList<String>()));	
-		studentList.add(new Student("EE5", 15, 4.0, "Electrical Engineer", "", "", new LinkedList<Integer>(), new LinkedList<String>()));	
-		studentList.add(new Student("EE6", 16, 4.0, "Electrical Engineer", "", "", new LinkedList<Integer>(), new LinkedList<String>()));	
-		studentList.add(new Student("EE7", 17, 4.0, "Electrical Engineer", "", "", new LinkedList<Integer>(), new LinkedList<String>()));
+		studentList.add(new Student("EE0", 10, 4.0, "Electrical Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));
+		studentList.add(new Student("EE1", 11, 4.0, "Electrical Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
+		studentList.add(new Student("EE2", 12, 4.0, "Electrical Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
+		studentList.add(new Student("EE3", 13, 4.0, "Electrical Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
+		studentList.add(new Student("EE4", 14, 4.0, "Electrical Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
+		studentList.add(new Student("EE5", 15, 4.0, "Electrical Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
+		studentList.add(new Student("EE6", 16, 4.0, "Electrical Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
+		studentList.add(new Student("EE7", 17, 4.0, "Electrical Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));
 		
-		studentList.add(new Student("ME0", 110, 4.0, "Mechanical Engineer", "", "", new LinkedList<Integer>(), new LinkedList<String>()));	
-		studentList.add(new Student("ME1", 111, 4.0, "Mechanical Engineer", "", "", new LinkedList<Integer>(), new LinkedList<String>()));	
-		studentList.add(new Student("ME2", 112, 4.0, "Mechanical Engineer", "", "", new LinkedList<Integer>(), new LinkedList<String>()));	
-		studentList.add(new Student("ME3", 113, 4.0, "Mechanical Engineer", "", "", new LinkedList<Integer>(), new LinkedList<String>()));	
-		studentList.add(new Student("ME4", 114, 4.0, "Mechanical Engineer", "", "", new LinkedList<Integer>(), new LinkedList<String>()));	
-		studentList.add(new Student("ME5", 115, 4.0, "Mechanical Engineer", "", "", new LinkedList<Integer>(), new LinkedList<String>()));	
-		studentList.add(new Student("ME6", 116, 4.0, "Mechanical Engineer", "", "", new LinkedList<Integer>(), new LinkedList<String>()));
+		studentList.add(new Student("ME0", 110, 4.0, "Mechanical Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
+		studentList.add(new Student("ME1", 111, 4.0, "Mechanical Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
+		studentList.add(new Student("ME2", 112, 4.0, "Mechanical Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
+		studentList.add(new Student("ME3", 113, 4.0, "Mechanical Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
+		studentList.add(new Student("ME4", 114, 4.0, "Mechanical Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
+		studentList.add(new Student("ME5", 115, 4.0, "Mechanical Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
+		studentList.add(new Student("ME6", 116, 4.0, "Mechanical Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));
 		
-		studentList.add(new Student("CE0", 1110, 4.0, "Civil Engineer", "", "", new LinkedList<Integer>(), new LinkedList<String>()));	
-		studentList.add(new Student("CE1", 1111, 4.0, "Civil Engineer", "", "", new LinkedList<Integer>(), new LinkedList<String>()));	
-		studentList.add(new Student("CE2", 1112, 4.0, "Civil Engineer", "", "", new LinkedList<Integer>(), new LinkedList<String>()));	
-		studentList.add(new Student("CE3", 1113, 4.0, "Civil Engineer", "", "", new LinkedList<Integer>(), new LinkedList<String>()));	
-		studentList.add(new Student("CE4", 1114, 4.0, "Civil Engineer", "", "", new LinkedList<Integer>(), new LinkedList<String>()));	
-		studentList.add(new Student("CE5", 1115, 4.0, "Civil Engineer", "", "", new LinkedList<Integer>(), new LinkedList<String>()));
+		studentList.add(new Student("CE0", 1110, 4.0, "Civil Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
+		studentList.add(new Student("CE1", 1111, 4.0, "Civil Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
+		studentList.add(new Student("CE2", 1112, 4.0, "Civil Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
+		studentList.add(new Student("CE3", 1113, 4.0, "Civil Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
+		studentList.add(new Student("CE4", 1114, 4.0, "Civil Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
+		studentList.add(new Student("CE5", 1115, 4.0, "Civil Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));
 		
 		for (Project project : projList)
 		{

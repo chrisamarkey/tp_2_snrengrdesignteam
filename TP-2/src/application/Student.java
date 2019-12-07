@@ -11,8 +11,9 @@ public class Student {
 	private double gpa;
 	private String major;
 	private String favProject;
+	private int weight;
 	private String assignedProj;
-	private LinkedList<Integer> enemyIDs;
+	private LinkedList<String> enemyNames;
 	private LinkedList<String> preferredProjects;
 
 	public Student() {
@@ -21,8 +22,9 @@ public class Student {
 		gpa = 0.0;
 		major = "";
 		favProject = "";
+		weight = 0;
 		assignedProj = "";
-		enemyIDs = new LinkedList<>();
+		enemyNames = new LinkedList<>();
 		preferredProjects = new LinkedList<>();
 	}
 
@@ -31,8 +33,9 @@ public class Student {
 				   double gpa, 
 				   String major, 
 				   String favProject,
+				   Integer weight,
 				   String assignedProject,
-				   LinkedList<Integer> enemyIDs,
+				   LinkedList<String> enemyNames,
 				   LinkedList<String> preferredProjects 
 				   ) { // 12/4/19 added assignedProject
 		this.name = name;
@@ -40,25 +43,42 @@ public class Student {
 		this.gpa = gpa;
 		this.major = major;
 		this.favProject = favProject; // Added 11/25/19
+		this.weight = weight;
 		this.assignedProj = assignedProject; // 12/4/19 addition
-		this.enemyIDs = enemyIDs;	
+		this.enemyNames = enemyNames;	
 		this.preferredProjects = preferredProjects; // Added 11/25/19
 	}
-	
+
 	public String getName() {
 		return this.name;
+	}
+	
+	public void setName(String input) {
+		this.name = input;
 	}
 	
 	public Integer getID() {
 		return this.id;
 	}
 	
+	public void setID(int input) {
+		this.id = input;
+	}
+	
 	public Double getGPA() {
 		return this.gpa;
 	}
 	
+	public void setGPA(double input) {
+		this.gpa = input;
+	}
+	
 	public String getMajor() {
 		return this.major;
+	}
+	
+	public void setMajor(String input) {
+		this.major = input;
 	}
 	
 	public String getFavProject() { // Added 11/25/19		
@@ -68,30 +88,38 @@ public class Student {
 	public void setFavProject(String input)
 	{
 		this.favProject = input;
+	}
+	
+	public Integer getWeight() {
+		return this.weight;
+	}
+	
+	public void setWeight(int input) {
+		this.weight = input;
+	}
+	
+	public String getAssignedProject() { // Added 12/4/19
+		return this.assignedProj;
 	}	
 
 	public void setAssignedProject(String assignedProject) { // Added 12/4/19
 		this.assignedProj = assignedProject;
 	}
-	
-	public String getAssignedProject() { // Added 12/4/19
-		return this.assignedProj;
-	}
 		
-	public LinkedList<Integer> getEnemyIDs() {
-		return this.enemyIDs;
+	public LinkedList<String> getEnemyNames() {
+		return this.enemyNames;
 	}
 	
-	public void addEnemyIDs(Integer ID) {
-		this.enemyIDs.add(ID);
+	public void addEnemyNames(String input) {
+		this.enemyNames.add(input);
 	}
 	
-	public void removeEnemyIDs(Integer ID) {
-		for (int i = 0; i < enemyIDs.size(); i++)
+	public void removeEnemyIDs(String input) {
+		for (int i = 0; i < enemyNames.size(); i++)
 		{
-			if (enemyIDs.get(i) == ID)
+			if (enemyNames.get(i).equals(input))
 			{
-				enemyIDs.remove(i);
+				enemyNames.remove(i);
 				break;
 			}
 		}
@@ -122,22 +150,22 @@ public class Student {
 
 	public static void main(String[] args) {
 		
-		Student paper = new Student("paper", 1111, 4.0, "covering rocks", "playing rps", "playing rps",
-				new LinkedList<Integer>(), new LinkedList<String>());
-		Student rock = new Student("rock", 2222, 3.0, "smashing scissors", "playing rps", "playing rps",
-				new LinkedList<Integer>(), new LinkedList<String>());
-		Student scissors = new Student("scissors", 3333, 2.0, "cutting paper", "playing rps", "playing rps",
-				new LinkedList<Integer>(), new LinkedList<String>());
+		Student paper = new Student("paper", 1111, 4.0, "covering rocks", "playing rps", 0, "playing rps",
+				new LinkedList<String>(), new LinkedList<String>());
+		Student rock = new Student("rock", 2222, 3.0, "smashing scissors", "playing rps", 0, "playing rps",
+				new LinkedList<String>(), new LinkedList<String>());
+		Student scissors = new Student("scissors", 3333, 2.0, "cutting paper", "playing rps", 0, "playing rps",
+				new LinkedList<String>(), new LinkedList<String>());
 		
-		paper.addEnemyIDs(scissors.getID());
-		paper.addEnemyIDs(rock.getID());
-		rock.addEnemyIDs(paper.getID());
-		rock.addEnemyIDs(scissors.getID());
-		scissors.addEnemyIDs(rock.getID());
-		scissors.addEnemyIDs(paper.getID());
-		System.out.println(paper.enemyIDs);
-		System.out.println(rock.enemyIDs);
-		System.out.println(scissors.enemyIDs);
+		paper.addEnemyNames(scissors.getName());
+		paper.addEnemyNames(rock.getName());
+		rock.addEnemyNames(paper.getName());
+		rock.addEnemyNames(scissors.getName());
+		scissors.addEnemyNames(rock.getName());
+		scissors.addEnemyNames(paper.getName());
+		System.out.println(paper.enemyNames);
+		System.out.println(rock.enemyNames);
+		System.out.println(scissors.enemyNames);
 
 		paper.addPreferredProjects("Kite"); // Added 11/25/19
 		paper.addPreferredProjects("Surf");
