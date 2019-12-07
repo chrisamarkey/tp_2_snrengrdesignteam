@@ -49,7 +49,7 @@ public class Project
 		return this.id;
 	}
 	
-	public void setName(int input) {
+	public void setID(int input) {
 		this.id = input;
 	}
 
