@@ -1,5 +1,6 @@
 package application;
 
+import java.io.File;
 import java.util.*;
 
 public class ProjectReader { //Creates Project objects by implementing ExcelIO methods
@@ -10,7 +11,8 @@ public class ProjectReader { //Creates Project objects by implementing ExcelIO m
 		
 	}
 	// This method should create a list full of complete projects and return that list to whatever calls for it. 
-	public LinkedList<Project> createProjects(ExcelIO reader) {
+	public LinkedList<Project> createProjects(ExcelIO reader, File projectFile) {
+		reader.createPStream(projectFile);
 		boolean moreData = true;
 		while (moreData) {
 			Project newProject = new Project();
