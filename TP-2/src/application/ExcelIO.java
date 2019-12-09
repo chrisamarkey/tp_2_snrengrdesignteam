@@ -221,8 +221,9 @@ public class ExcelIO { // Overloaded methods based on which class is being creat
 		
 	}
 	
-	public void saveNewFile() {
+	public void saveNewFile(File destinationFile) {
 		try {
+		teamStream = new FileOutputStream(destinationFile);
 		teamWB.write(teamStream);
 		}
 		catch (IOException e) {
