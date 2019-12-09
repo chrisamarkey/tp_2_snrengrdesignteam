@@ -32,7 +32,7 @@ public class Project
 //		this.numInterestedProj = numInterestedProj; // Removed 12/5/19
 	}
 	
-	public void setRequiredMembers(Student student) { // Added 12/5/19
+	public void setActualMembers(Student student) { // Added 12/5/19
 		this.actualMembers.add(student);
 	}
 	
@@ -92,6 +92,7 @@ public class Project
 		project2Degrees.add("PE");
 		project2Degrees.add("SE");
 		project2Degrees.add("CHE");
+		
 		LinkedList<String> project3Degrees = new LinkedList<String>();
 		project3Degrees.add("MatlE");
 		project3Degrees.add("CompE");
