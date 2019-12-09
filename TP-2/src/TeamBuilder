@@ -23,26 +23,41 @@ public class TeamBuilder {
 
 	public void assignFavProject(LinkedList<Student> studentList, LinkedList<Project> projectList) {
 		for (int i = 0; i < studentList.size(); i++) {
+
 			student = studentList.get(i);
+			System.out.println ("Student " + i + "'s name is " + studentList.get(i).getStudentName(student));
+			System.out.println ("Student " + i + "'s ID # is " + studentList.get(i).getStudentID(student));
+			System.out.println ("Student " + i + "'s Favorite project is " + studentList.get(i).getFavProject(student));
+			System.out.println ("Student " + i + "'s assigned project name is " + studentList.get(i).getAssignedProject(student));
 			favProject = student.getFavProject(student);
 
+			outerloop:
+				
 			for (int j = 0; j < projectList.size(); j++) {
+				System.out.println("^^ I'm in the 2nd For loop with j = " + j);
 				project = projectList.get(j);
+				System.out.println("Project's " + j + " required member is " + project.getRequiredMembers(project).get(j));
+				System.out.println("Project's getRequiredMembers size is " + project.getRequiredMembers(project).size());
+				System.out.println("Project's getToBeAssignedMembers size is " + project.getToBeAssignedMembers(project).size());
 
-				for (int k = 0; j < project.getRequiredMembers(project).size(); k++) {
-
-					if (favProject == project.getProjectName(project)
-							& project.getToBeAssignedMembers(project).get(k) == student.getStudentMajor(student)
-							& checkForEnemies(student, project) == false) {
+				for (int k = 0; j < project.getToBeAssignedMembers(project).size(); k++) {
+					System.out.println("*** I'm in the 3rd For loop with k = " + k);
+					if (favProject == project.getProjectName(project) & project.getToBeAssignedMembers(project).get(k) == student.getStudentMajor(student) & checkForEnemies(student, project) == false) {
+						System.out.println("Passed test where student is assigned to their favorite project!");
 						// set project for student
 						student.setAssignedProject(project.getProjectName(project)); // 12/5/19
+						System.out.println ("Student's " + i + " current assigned project name is " + studentList.get(i).getAssignedProject(student));						
 						// remove major from project's requiredMembers List so that no other student can
 						// be assigned to that project's role
 						project.removeToBeAssignedMembers(student); // 12/5/19
+						System.out.println ("Next major to be assigned " + projectList.get(i).getToBeAssignedMembers(project).get(i));						
 						// set student for project
-						project.setRequiredMembers(student);
-					}
-				}
+						project.setActualMembers(student);
+						System.out.println ("Project " + i + " has this student assigned to it: " + project.getActualMembers(project).get(0).getStudentName(student));	
+						System.out.println();
+						break outerloop;
+						}
+				}		
 			}
 		}
 	}
@@ -74,16 +89,36 @@ public class TeamBuilder {
 //	   **Non-happy path** Probably skip this step at first.
 
 	public static void main(String[] args) {
+		LinkedList<String> project1Degrees = new LinkedList<String>();
+		project1Degrees.add("ME");
+		project1Degrees.add("EE");
+		project1Degrees.add("CE");
+		
+		LinkedList<String> project2Degrees = new LinkedList<String>();
+		project2Degrees.add("PE");
+		project2Degrees.add("SE");
+		project2Degrees.add("CHE");
+		
 //		Student(String name, int id, double gpa, String major, LinkedList<Integer> enemyIDs, String favProject, LinkedList<String> preferredProjects, String assignedProject)
-		Student student1 = new Student("student1", 1111, 4.0, "ME", new LinkedList<Integer>(), "Shuttle", new LinkedList<String>(), "");
-//		Project(String project, LinkedList<String> requiredMembers, LinkedList<Student> actualMembers)
-//		Project project1 = new Project(seniorProject1, project1Degrees, studentGroup1);
-		Project project1 = new Project("Shuttle", new LinkedList<String>(), new LinkedList<Student>());
+		Student student1 = new Student("student1", 1111, 4.0, "ME", new LinkedList<Integer>(), "Shuttle", new LinkedList<String>(), "Placeholder1");
+		Student student2 = new Student("student2", 2222, 3.0, "CE", new LinkedList<Integer>(), "Robot", new LinkedList<String>(), "Placeholder2");
 		LinkedList<Student> studentList = new LinkedList<Student>();
 		studentList.add(student1);
+		studentList.add(student2);
+		student1.addEnemy(student2);
+		student2.addEnemy(student1);
+		
+		
+		//		Project(String project, LinkedList<String> requiredMembers, LinkedList<Student> actualMembers)
+//		Project project1 = new Project(seniorProject1, project1Degrees, studentGroup1);
+		Project project1 = new Project("Shuttle", project1Degrees, new LinkedList<Student>());
+		Project project2 = new Project("Robot", project2Degrees, new LinkedList<Student>());
+
 		LinkedList<Project> projectList = new LinkedList<Project>();
 		projectList.add(project1);
-
+		projectList.add(project2);
+		
+		
 		TeamBuilder team1 = new TeamBuilder(studentList, projectList);
 		team1.assignFavProject(studentList, projectList);
 	}
