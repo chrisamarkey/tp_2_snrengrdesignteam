@@ -22,42 +22,52 @@ public class SampleData
 
 		projList.get(0).addRequiredMembers("Electrical Engineer", 2);
 		projList.get(0).addRequiredMembers("Mechanical Engineer", 3);
+		projList.get(0).addRequiredMembers("Computer Engineer", 3);
 		projList.get(0).addRequiredMembers("Civil Engineer", 4);
 
 		projList.get(1).addRequiredMembers("Electrical Engineer", 3);
 		projList.get(1).addRequiredMembers("Mechanical Engineer", 4);
+		projList.get(1).addRequiredMembers("Computer Engineer", 4);
 		projList.get(1).addRequiredMembers("Civil Engineer", 2);
 
 		projList.get(2).addRequiredMembers("Electrical Engineer", 4);
 		projList.get(2).addRequiredMembers("Mechanical Engineer", 2);
+		projList.get(2).addRequiredMembers("Computer Engineer", 2);
 		projList.get(2).addRequiredMembers("Civil Engineer", 3);
 
 		projList.get(3).addRequiredMembers("Electrical Engineer", 2);
 		projList.get(3).addRequiredMembers("Mechanical Engineer", 3);
+		projList.get(3).addRequiredMembers("Computer Engineer", 3);
 		projList.get(3).addRequiredMembers("Civil Engineer", 4);
 
 		projList.get(4).addRequiredMembers("Electrical Engineer", 3);
 		projList.get(4).addRequiredMembers("Mechanical Engineer", 4);
+		projList.get(4).addRequiredMembers("Computer Engineer", 4);
 		projList.get(4).addRequiredMembers("Civil Engineer", 2);
 
 		projList.get(5).addRequiredMembers("Electrical Engineer", 4);
 		projList.get(5).addRequiredMembers("Mechanical Engineer", 2);
+		projList.get(5).addRequiredMembers("Computer Engineer", 2);
 		projList.get(5).addRequiredMembers("Civil Engineer", 3);
 
 		projList.get(6).addRequiredMembers("Electrical Engineer", 2);
 		projList.get(6).addRequiredMembers("Mechanical Engineer", 3);
+		projList.get(6).addRequiredMembers("Computer Engineer", 3);
 		projList.get(6).addRequiredMembers("Civil Engineer", 4);
 
 		projList.get(7).addRequiredMembers("Electrical Engineer", 3);
 		projList.get(7).addRequiredMembers("Mechanical Engineer", 4);
+		projList.get(7).addRequiredMembers("Computer Engineer", 4);
 		projList.get(7).addRequiredMembers("Civil Engineer", 2);
 
 		projList.get(8).addRequiredMembers("Electrical Engineer", 4);
 		projList.get(8).addRequiredMembers("Mechanical Engineer", 2);
+		projList.get(8).addRequiredMembers("Computer Engineer", 2);
 		projList.get(8).addRequiredMembers("Civil Engineer", 3);
 
 		projList.get(9).addRequiredMembers("Electrical Engineer", 3);
 		projList.get(9).addRequiredMembers("Mechanical Engineer", 3);
+		projList.get(9).addRequiredMembers("Computer Engineer", 3);
 		projList.get(9).addRequiredMembers("Civil Engineer", 3);
 		
 		return projList;
@@ -129,36 +139,67 @@ public class SampleData
 		stuList.add(new Student("ME28", 228, 2.8, "Mechanical Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
 		stuList.add(new Student("ME29", 229, 3.9, "Mechanical Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));
 		
-		stuList.add(new Student("CE00", 300, 2.0, "Civil Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
-		stuList.add(new Student("CE01", 301, 3.1, "Civil Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
-		stuList.add(new Student("CE02", 302, 3.2, "Civil Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
-		stuList.add(new Student("CE03", 303, 3.3, "Civil Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
-		stuList.add(new Student("CE04", 304, 3.4, "Civil Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
-		stuList.add(new Student("CE05", 305, 3.5, "Civil Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
-		stuList.add(new Student("CE06", 306, 2.6, "Civil Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
-		stuList.add(new Student("CE07", 307, 3.7, "Civil Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
-		stuList.add(new Student("CE08", 308, 3.8, "Civil Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
-		stuList.add(new Student("CE09", 309, 3.9, "Civil Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));
-		stuList.add(new Student("CE10", 310, 3.0, "Civil Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
-		stuList.add(new Student("CE11", 311, 3.1, "Civil Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
-		stuList.add(new Student("CE12", 312, 2.2, "Civil Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
-		stuList.add(new Student("CE13", 313, 3.3, "Civil Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
-		stuList.add(new Student("CE14", 314, 3.4, "Civil Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
-		stuList.add(new Student("CE15", 315, 3.5, "Civil Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
-		stuList.add(new Student("CE16", 316, 3.6, "Civil Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
-		stuList.add(new Student("CE17", 317, 3.7, "Civil Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
-		stuList.add(new Student("CE18", 318, 2.8, "Civil Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
-		stuList.add(new Student("CE19", 319, 3.9, "Civil Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));
-		stuList.add(new Student("CE20", 320, 3.0, "Civil Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
-		stuList.add(new Student("CE21", 321, 3.1, "Civil Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
-		stuList.add(new Student("CE22", 322, 3.2, "Civil Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
-		stuList.add(new Student("CE23", 323, 3.3, "Civil Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
-		stuList.add(new Student("CE24", 324, 2.4, "Civil Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
-		stuList.add(new Student("CE25", 325, 3.5, "Civil Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
-		stuList.add(new Student("CE26", 326, 3.6, "Civil Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
-		stuList.add(new Student("CE27", 327, 3.7, "Civil Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
-		stuList.add(new Student("CE28", 328, 3.8, "Civil Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
-		stuList.add(new Student("CE29", 329, 3.9, "Civil Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));
+		stuList.add(new Student("KE00", 300, 2.0, "Computer Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
+		stuList.add(new Student("KE01", 301, 3.1, "Computer Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
+		stuList.add(new Student("KE02", 302, 3.2, "Computer Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
+		stuList.add(new Student("KE03", 303, 3.3, "Computer Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
+		stuList.add(new Student("KE04", 304, 3.4, "Computer Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
+		stuList.add(new Student("KE05", 305, 3.5, "Computer Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
+		stuList.add(new Student("KE06", 306, 2.6, "Computer Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
+		stuList.add(new Student("KE07", 307, 3.7, "Computer Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
+		stuList.add(new Student("KE08", 308, 3.8, "Computer Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
+		stuList.add(new Student("KE09", 309, 3.9, "Computer Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));
+		stuList.add(new Student("KE10", 310, 3.0, "Computer Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
+		stuList.add(new Student("KE11", 311, 3.1, "Computer Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
+		stuList.add(new Student("KE12", 312, 2.2, "Computer Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
+		stuList.add(new Student("KE13", 313, 3.3, "Computer Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
+		stuList.add(new Student("KE14", 314, 3.4, "Computer Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
+		stuList.add(new Student("KE15", 315, 3.5, "Computer Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
+		stuList.add(new Student("KE16", 316, 3.6, "Computer Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
+		stuList.add(new Student("KE17", 317, 3.7, "Computer Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
+		stuList.add(new Student("KE18", 318, 2.8, "Computer Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
+		stuList.add(new Student("KE19", 319, 3.9, "Computer Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));
+		stuList.add(new Student("KE20", 320, 3.0, "Computer Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
+		stuList.add(new Student("KE21", 321, 3.1, "Computer Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
+		stuList.add(new Student("KE22", 322, 3.2, "Computer Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
+		stuList.add(new Student("KE23", 323, 3.3, "Computer Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
+		stuList.add(new Student("KE24", 324, 2.4, "Computer Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
+		stuList.add(new Student("KE25", 325, 3.5, "Computer Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
+		stuList.add(new Student("KE26", 326, 3.6, "Computer Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
+		stuList.add(new Student("KE27", 327, 3.7, "Computer Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
+		stuList.add(new Student("KE28", 328, 3.8, "Computer Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
+		stuList.add(new Student("KE29", 329, 3.9, "Computer Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));
+		
+		stuList.add(new Student("CE00", 400, 2.0, "Civil Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
+		stuList.add(new Student("CE01", 401, 3.1, "Civil Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
+		stuList.add(new Student("CE02", 402, 3.2, "Civil Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
+		stuList.add(new Student("CE03", 403, 3.3, "Civil Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
+		stuList.add(new Student("CE04", 404, 3.4, "Civil Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
+		stuList.add(new Student("CE05", 405, 3.5, "Civil Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
+		stuList.add(new Student("CE06", 406, 2.6, "Civil Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
+		stuList.add(new Student("CE07", 407, 3.7, "Civil Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
+		stuList.add(new Student("CE08", 408, 3.8, "Civil Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
+		stuList.add(new Student("CE09", 409, 3.9, "Civil Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));
+		stuList.add(new Student("CE10", 410, 3.0, "Civil Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
+		stuList.add(new Student("CE11", 411, 3.1, "Civil Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
+		stuList.add(new Student("CE12", 412, 2.2, "Civil Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
+		stuList.add(new Student("CE13", 413, 3.3, "Civil Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
+		stuList.add(new Student("CE14", 414, 3.4, "Civil Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
+		stuList.add(new Student("CE15", 415, 3.5, "Civil Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
+		stuList.add(new Student("CE16", 416, 3.6, "Civil Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
+		stuList.add(new Student("CE17", 417, 3.7, "Civil Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
+		stuList.add(new Student("CE18", 418, 2.8, "Civil Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
+		stuList.add(new Student("CE19", 419, 3.9, "Civil Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));
+		stuList.add(new Student("CE20", 420, 3.0, "Civil Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
+		stuList.add(new Student("CE21", 421, 3.1, "Civil Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
+		stuList.add(new Student("CE22", 422, 3.2, "Civil Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
+		stuList.add(new Student("CE23", 423, 3.3, "Civil Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
+		stuList.add(new Student("CE24", 424, 2.4, "Civil Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
+		stuList.add(new Student("CE25", 425, 3.5, "Civil Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
+		stuList.add(new Student("CE26", 426, 3.6, "Civil Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
+		stuList.add(new Student("CE27", 427, 3.7, "Civil Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
+		stuList.add(new Student("CE28", 428, 3.8, "Civil Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
+		stuList.add(new Student("CE29", 429, 3.9, "Civil Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));
 		
 //		System.out.println(stuList.get(0).getName());
 //		System.out.println(stuList.get(1).getName());

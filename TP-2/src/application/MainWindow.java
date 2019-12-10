@@ -33,6 +33,8 @@ public class MainWindow
 	int electricalEngineersRequired;
 	int mechanicalEngineersRead;
 	int mechanicalEngineersRequired;
+	int computerEngineersRead;
+	int computerEngineersRequired;
 	int civilEngineersRead;
 	int civilEngineersRequired;
 	String successFailMessage;
@@ -58,6 +60,10 @@ public class MainWindow
 	TextField mechanicalEngineersReadTextField;
 	Label mechanicalEngineersRequiredLabel;
 	TextField mechanicalEngineersRequiredTextField;
+	Label computerEngineersReadLabel;
+	TextField computerEngineersReadTextField;
+	Label computerEngineersRequiredLabel;
+	TextField computerEngineersRequiredTextField;
 	Label civilEngineersReadLabel;
 	TextField civilEngineersReadTextField;
 	Label civilEngineersRequiredLabel;
@@ -84,6 +90,8 @@ public class MainWindow
 		electricalEngineersRequired = 0;
 		mechanicalEngineersRead = 0;
 		mechanicalEngineersRequired = 0;
+		computerEngineersRead = 0;
+		computerEngineersRequired = 0;
 		civilEngineersRead = 0;
 		civilEngineersRequired = 0;
 		successFailMessage = "test";
@@ -111,19 +119,25 @@ public class MainWindow
 		{
 			public void handle(ActionEvent event)
 			{
-//				FileChooser fileChooser = new FileChooser();
-//				fileChooser.setTitle("Open Students List");
-//				FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Excel files (*.xlsx, *.csv, *.xls)", "*.csv", "*.xls", "*.xlsx");
-//				fileChooser.getExtensionFilters().add(extFilter);
-//				File file = fileChooser.showOpenDialog(new Stage());
-//				if (file != null)
-//				{
+				System.out.println("Working Directory = " + System.getProperty("user.dir"));
+				
+				FileChooser fileChooser = new FileChooser();
+				fileChooser.setTitle("Open Students List");
+				FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Excel files (*.xlsx, *.csv, *.xls)", "*.csv", "*.xls", "*.xlsx");
+				fileChooser.getExtensionFilters().add(extFilter);
+				fileChooser.setInitialDirectory(new File(System.getProperty("user.dir")));
+				File file = fileChooser.showOpenDialog(new Stage());
+				if (file != null)
+				{
 //					System.out.println(file.getName());
-//					readStudentsFilename = file.getName();
-//				}
+					readStudentsFilename = file.getName();
+					ExcelIO excelIO = new ExcelIO();
+					StudentReader studentReader = new StudentReader();
+					studentList = studentReader.createStudents(excelIO, file);
+				}
 				
 //				makeTestData_students();
-				studentList = SampleData.getStudents();
+//				studentList = SampleData.getStudents();
 				
 				studentsRead = 0;
 				averageGPA = 0.0;
@@ -133,7 +147,9 @@ public class MainWindow
 				electricalEngineersRead = 0;
 				//electricalEngineersRequired = 0;
 				mechanicalEngineersRead = 0;
-				//mechanicalEngineersRequired = 0;
+				//computerEngineersRequired = 0;
+				computerEngineersRead = 0;
+				//civilEngineersRequired = 0;
 				civilEngineersRead = 0;
 				//civilEngineersRequired = 0;
 				
@@ -146,6 +162,10 @@ public class MainWindow
 					else if (student.getMajor().equals("Mechanical Engineer"))
 					{
 						mechanicalEngineersRead++;
+					}
+					else if (student.getMajor().equals("Computer Engineer"))
+					{
+						computerEngineersRead++;
 					}
 					else if (student.getMajor().equals("Civil Engineer"))
 					{
@@ -170,19 +190,23 @@ public class MainWindow
 		{
 			public void handle(ActionEvent event)
 			{
-//				FileChooser fileChooser = new FileChooser();
-//				fileChooser.setTitle("Open Students List");
-//				FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Excel files (*.xlsx, *.csv, *.xls)", "*.csv", "*.xls", "*.xlsx");
-//				fileChooser.getExtensionFilters().add(extFilter);
-//				File file = fileChooser.showOpenDialog(new Stage());
-//				if (file != null)
-//				{
-////					System.out.println(file.getName());
-//					readProjectsFilename = file.getName();
-//				}
+				FileChooser fileChooser = new FileChooser();
+				fileChooser.setTitle("Open Students List");
+				FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Excel files (*.xlsx, *.csv, *.xls)", "*.csv", "*.xls", "*.xlsx");
+				fileChooser.getExtensionFilters().add(extFilter);
+				fileChooser.setInitialDirectory(new File(System.getProperty("user.dir")));
+				File file = fileChooser.showOpenDialog(new Stage());
+				if (file != null)
+				{
+//					System.out.println(file.getName());
+					readProjectsFilename = file.getName();
+					ExcelIO excelIO = new ExcelIO();
+					ProjectReader projectReader = new ProjectReader();
+					projectList = projectReader.createProjects(excelIO, file);
+				}
 				
 //				makeTestData_projects();
-				projectList = SampleData.getProjects();
+//				projectList = SampleData.getProjects();
 				
 				//studentsRead = 0;
 				//averageGPA = 0.0;
@@ -193,6 +217,8 @@ public class MainWindow
 				electricalEngineersRequired = 0;
 				//mechanicalEngineersRead = 0;
 				mechanicalEngineersRequired = 0;
+				//computerEngineersRead = 0;
+				computerEngineersRequired = 0;
 				//civilEngineersRead = 0;
 				civilEngineersRequired = 0;
 				
@@ -207,6 +233,10 @@ public class MainWindow
 						else if (entry.getKey().equals("Mechanical Engineer"))
 						{
 							mechanicalEngineersRequired += entry.getValue();
+						}
+						else if (entry.getKey().equals("Computer Engineer"))
+						{
+							computerEngineersRequired += entry.getValue();
 						}
 						if (entry.getKey().equals("Civil Engineer"))
 						{
@@ -229,15 +259,16 @@ public class MainWindow
 			{
 				successFailMessage = "test";
 				
-//				FileChooser fileChooser = new FileChooser();
-//				fileChooser.setTitle("Save Project Teams");
-//				FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Excel files (*.xlsx, *.csv, *.xls)", "*.csv", "*.xls", "*.xlsx");
-//				fileChooser.getExtensionFilters().add(extFilter);
-//				File file = fileChooser.showSaveDialog(new Stage());
-//				if (file != null)
-//				{
-////					System.out.println(file.getName());
-//				}
+				FileChooser fileChooser = new FileChooser();
+				fileChooser.setTitle("Save Project Teams");
+				FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Excel files (*.xlsx, *.csv, *.xls)", "*.csv", "*.xls", "*.xlsx");
+				fileChooser.getExtensionFilters().add(extFilter);
+				fileChooser.setInitialDirectory(new File(System.getProperty("user.dir")));
+				File file = fileChooser.showSaveDialog(new Stage());
+				if (file != null)
+				{
+//					System.out.println(file.getName());
+				}
 				
 				TeamBuilder teamBuilder = new TeamBuilder(projectList, studentList, GPArangeLow, GPArangeHigh);
 				
@@ -261,6 +292,8 @@ public class MainWindow
 		electricalEngineersRequiredTextField.setText(Integer.toString(electricalEngineersRequired));
 		mechanicalEngineersReadTextField.setText(Integer.toString(mechanicalEngineersRead));
 		mechanicalEngineersRequiredTextField.setText(Integer.toString(mechanicalEngineersRequired));
+		computerEngineersReadTextField.setText(Integer.toString(computerEngineersRead));
+		computerEngineersRequiredTextField.setText(Integer.toString(computerEngineersRequired));
 		civilEngineersReadTextField.setText(Integer.toString(civilEngineersRead));
 		civilEngineersRequiredTextField.setText(Integer.toString(civilEngineersRequired));
 		resultMessageTextField.setText(Integer.toString(0));
@@ -392,6 +425,32 @@ public class MainWindow
 		GridPane.setConstraints(mechanicalEngineersRequiredTextField, 2, verticalIndex++);
 		GridPane.setMargin(mechanicalEngineersRequiredTextField, new Insets(5, 5, 5, 5));
 		myGridPane.getChildren().add(mechanicalEngineersRequiredTextField);
+		
+		computerEngineersReadLabel = new Label("Computer Engineers Read");
+		GridPane.setConstraints(computerEngineersReadLabel, 0, verticalIndex);
+		GridPane.setMargin(computerEngineersReadLabel, new Insets(5, 5, 5, 5));
+		myGridPane.getChildren().add(computerEngineersReadLabel);
+		
+		computerEngineersReadTextField = new TextField();
+		computerEngineersReadTextField.setEditable(false);
+		computerEngineersReadTextField.setPrefWidth(textfieldWidth);
+		computerEngineersReadTextField.setStyle("-fx-text-inner-color: grey;");
+		GridPane.setConstraints(computerEngineersReadTextField, 1, verticalIndex);
+		GridPane.setMargin(computerEngineersReadTextField, new Insets(5, 5, 5, 5));
+		myGridPane.getChildren().add(computerEngineersReadTextField);
+		
+		computerEngineersRequiredLabel = new Label("Computer Engineers Required");
+		GridPane.setConstraints(computerEngineersRequiredLabel, 3, verticalIndex);
+		GridPane.setMargin(computerEngineersRequiredLabel, new Insets(5, 5, 5, 5));
+		myGridPane.getChildren().add(computerEngineersRequiredLabel);
+				
+		computerEngineersRequiredTextField = new TextField();
+		computerEngineersRequiredTextField.setEditable(false);
+		computerEngineersRequiredTextField.setPrefWidth(textfieldWidth);
+		computerEngineersRequiredTextField.setStyle("-fx-text-inner-color: grey;");
+		GridPane.setConstraints(computerEngineersRequiredTextField, 2, verticalIndex++);
+		GridPane.setMargin(computerEngineersRequiredTextField, new Insets(5, 5, 5, 5));
+		myGridPane.getChildren().add(computerEngineersRequiredTextField);
 		
 		civilEngineersReadLabel = new Label("Civil Engineers Read");
 		GridPane.setConstraints(civilEngineersReadLabel, 0, verticalIndex);
