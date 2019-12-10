@@ -12,8 +12,8 @@ public class Project
 	private String name;
 	private int id;
 	private int numInterested;
-	private HashMap<String, Integer> requiredMembers;
 	private int numRequired;
+	private HashMap<String, Integer> requiredMembers;
 	private LinkedList<Student> actualMembers;
 	// get avgGPA
 
@@ -21,6 +21,7 @@ public class Project
 		name = "";
 		id = 0;
 		numInterested = 0;
+		numRequired = 0;
 		requiredMembers = new HashMap<>();
 		actualMembers = new LinkedList<>();
 	}
@@ -28,11 +29,13 @@ public class Project
 	public Project(String name,
 				   int ID,
 				   int numInterested,
+				   int numRequired,
 				   HashMap<String, Integer> required,
 				   LinkedList<Student> actual) {
 		this.name = name;
 		this.id = ID;
-		this.numInterested = numInterested; // Removed 12/5/19
+		this.numInterested = numInterested;
+		this.numRequired = numRequired;
 		this.requiredMembers = required;
 		this.actualMembers = actual;
 	}
@@ -60,6 +63,14 @@ public class Project
 
 	public void setNumInterested(Integer num) { // 12/4-19 Changed projectList to project
 		this.numInterested = num;
+	}
+
+	public void setNumRequired(int numRequired) {
+		this.numRequired = numRequired;
+	}
+	
+	public int getNumRequired() {
+		return numRequired;
 	}
 	
 	public HashMap<String, Integer> getRequiredMembers() { // 12/4/19 Changed projectList to project
@@ -107,22 +118,13 @@ public class Project
 
 		return (totalGPA/actualMembers.size());
 	}
-	
-	
-	public int getNumRequired() {
-		return numRequired;
-	}
-
-	public void setNumRequired(int numRequired) {
-		this.numRequired = numRequired;
-	}
 
 	public static void main(String[] args) {
 		
 		LinkedList<Project> projList = new LinkedList<>();
-		projList.add(new Project("project0", 0, 0, new HashMap<>(), new LinkedList<Student>()));
-		projList.add(new Project("project1", 1, 0, new HashMap<>(), new LinkedList<Student>()));
-		projList.add(new Project("project2", 2, 0, new HashMap<>(), new LinkedList<Student>()));
+		projList.add(new Project("project0", 0, 0, 0, new HashMap<>(), new LinkedList<Student>()));
+		projList.add(new Project("project1", 1, 0, 0, new HashMap<>(), new LinkedList<Student>()));
+		projList.add(new Project("project2", 2, 0, 0, new HashMap<>(), new LinkedList<Student>()));
 
 		projList.get(0).addRequiredMembers("Electrical Engineer", 1);
 		projList.get(0).addRequiredMembers("Electrical Engineer", 1);

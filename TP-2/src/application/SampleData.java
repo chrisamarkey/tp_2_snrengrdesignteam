@@ -9,16 +9,16 @@ public class SampleData
 	{
 		LinkedList<Project> projList = new LinkedList<>();
 		
-		projList.add(new Project("project0", 0, 0, new HashMap<>(), new LinkedList<Student>()));
-		projList.add(new Project("project1", 1, 0, new HashMap<>(), new LinkedList<Student>()));
-		projList.add(new Project("project2", 2, 0, new HashMap<>(), new LinkedList<Student>()));
-		projList.add(new Project("project3", 3, 0, new HashMap<>(), new LinkedList<Student>()));
-		projList.add(new Project("project4", 4, 0, new HashMap<>(), new LinkedList<Student>()));
-		projList.add(new Project("project5", 5, 0, new HashMap<>(), new LinkedList<Student>()));
-		projList.add(new Project("project6", 6, 0, new HashMap<>(), new LinkedList<Student>()));
-		projList.add(new Project("project7", 7, 0, new HashMap<>(), new LinkedList<Student>()));
-		projList.add(new Project("project8", 8, 0, new HashMap<>(), new LinkedList<Student>()));
-		projList.add(new Project("project9", 9, 0, new HashMap<>(), new LinkedList<Student>()));
+		projList.add(new Project("project0", 0, 0, 0, new HashMap<>(), new LinkedList<Student>()));
+		projList.add(new Project("project1", 1, 0, 0, new HashMap<>(), new LinkedList<Student>()));
+		projList.add(new Project("project2", 2, 0, 0, new HashMap<>(), new LinkedList<Student>()));
+		projList.add(new Project("project3", 3, 0, 0, new HashMap<>(), new LinkedList<Student>()));
+		projList.add(new Project("project4", 4, 0, 0, new HashMap<>(), new LinkedList<Student>()));
+		projList.add(new Project("project5", 5, 0, 0, new HashMap<>(), new LinkedList<Student>()));
+		projList.add(new Project("project6", 6, 0, 0, new HashMap<>(), new LinkedList<Student>()));
+		projList.add(new Project("project7", 7, 0, 0, new HashMap<>(), new LinkedList<Student>()));
+		projList.add(new Project("project8", 8, 0, 0, new HashMap<>(), new LinkedList<Student>()));
+		projList.add(new Project("project9", 9, 0, 0, new HashMap<>(), new LinkedList<Student>()));
 
 		projList.get(0).addRequiredMembers("Electrical Engineer", 2);
 		projList.get(0).addRequiredMembers("Mechanical Engineer", 3);

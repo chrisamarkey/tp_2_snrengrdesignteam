@@ -1,6 +1,8 @@
 package application;
 
 import java.io.File;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map.Entry;
@@ -9,6 +11,7 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
@@ -25,6 +28,7 @@ public class MainWindow
 	String readStudentsFilename;
 	String readProjectsFilename;
 	int studentsRead;
+	int studentsRequired;
 	double averageGPA;
 	double GPArangeLow;
 	double GPArangeHigh;
@@ -45,11 +49,8 @@ public class MainWindow
 	TextField readProjectsFilenameTextField;
 	Label studentsReadLabel;
 	TextField studentsReadTextField;
-	Label averageGPALabel;
-	TextField averageGPATextField;
-	Label rangeGPALabel;
-	TextField rangeGPAlowTextField;
-	TextField rangeGPAhighTextField;
+	Label studentsRequiredLabel;
+	TextField studentsRequiredTextField;
 	Label projectsReadLabel;
 	TextField projectsReadTextField;
 	Label electricalEngineersReadLabel;
@@ -68,12 +69,23 @@ public class MainWindow
 	TextField civilEngineersReadTextField;
 	Label civilEngineersRequiredLabel;
 	TextField civilEngineersRequiredTextField;
+	Label averageGPALabel;
+	TextField averageGPATextField;
+	Label rangeGPALabel;
+	TextField rangeGPAlowTextField;
+	TextField rangeGPAhighTextField;
+	Label gpaLevelingLabel;
+	CheckBox gpaLevelingCheckBox;
+	Label randomizeTeamsLabel;
+	CheckBox randomizeTeamsCheckBox;
 	Button makeTeamsButton;
 	Label resultMessageLabel;
 	TextField resultMessageTextField;
 	Label helpLabel0;
 	Label helpLabel1;
 	Label helpLabel2;
+	Label helpLabel3;
+	Label helpLabel4;
 	
 	int testVal = 0;
 	
@@ -82,6 +94,7 @@ public class MainWindow
 		readStudentsFilename = "";		
 		readProjectsFilename = "";
 		studentsRead = 0;
+		studentsRequired = 0;
 		averageGPA = 0.0;
 		GPArangeLow = 0.0;
 		GPArangeHigh = 0.0;
@@ -94,10 +107,71 @@ public class MainWindow
 		computerEngineersRequired = 0;
 		civilEngineersRead = 0;
 		civilEngineersRequired = 0;
-		successFailMessage = "test";
+		successFailMessage = "not implemented";
 		
 		buildScreen();
 		updateTextFields();
+	}
+	
+	private LinkedList<Student> deepCopyStudentList(LinkedList<Student> input)
+	{
+		LinkedList<Student> newList = new LinkedList<>();
+		
+		for (Student student : input)
+		{
+			Student newStudent = new Student(new String(student.getName()),
+											 student.getID(),
+											 student.getGPA(),
+											 new String(student.getMajor()),
+											 new String(student.getFavProject()),
+											 student.getWeight(),
+											 new String(student.getAssignedProject()),
+											 new LinkedList<String>(),
+											 new LinkedList<String>());
+			
+			for (String enemy : student.getEnemyNames())
+			{
+				newStudent.addEnemyNames(new String(enemy));
+			}
+			
+			for (String project : student.getPreferredProjects())
+			{
+				newStudent.addPreferredProjects(project);
+			}
+			
+			newList.add(newStudent);
+		}
+		
+		return newList;
+	}
+	
+	private LinkedList<Project> deepCopyProjectList(LinkedList<Project> input)
+	{
+		LinkedList<Project> newList = new LinkedList<>();
+		
+		for (Project project : input)
+		{
+			Project newProject = new Project(new String(project.getName()),
+											 project.getID(),
+											 project.getNumInterested(),
+											 project.getNumRequired(),
+											 new HashMap<String, Integer>(),
+											 new LinkedList<Student>());
+			
+			for (Entry<String, Integer> entry : project.getRequiredMembers().entrySet())
+			{
+				newProject.addRequiredMembers(new String(entry.getKey()), new Integer(entry.getValue()));
+			}
+			
+//			for (Student student : project.getActualMembers())
+//			{
+//				
+//			}
+			
+			newList.add(newProject);
+		}
+		
+		return newList;
 	}
 	
 	public void buildScreen()
@@ -129,15 +203,16 @@ public class MainWindow
 				{
 //					System.out.println(file.getName());
 					readStudentsFilename = file.getName();
-					ExcelIO excelIO = new ExcelIO();
+
 					StudentReader studentReader = new StudentReader();
-					studentList = studentReader.createStudents(excelIO, file);
+					studentList = studentReader.createStudents(new ExcelIO(), file);
 				}
 				
 //				makeTestData_students();
 //				studentList = SampleData.getStudents();
-				
+
 				studentsRead = 0;
+//				studentsRequired = 0;
 				averageGPA = 0.0;
 				GPArangeLow = 0.0;
 				GPArangeHigh = 0.0;
@@ -189,7 +264,7 @@ public class MainWindow
 			public void handle(ActionEvent event)
 			{
 				FileChooser fileChooser = new FileChooser();
-				fileChooser.setTitle("Open Students List");
+				fileChooser.setTitle("Open Projects List");
 				FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Excel files (*.xlsx, *.csv, *.xls)", "*.csv", "*.xls", "*.xlsx");
 				fileChooser.getExtensionFilters().add(extFilter);
 				fileChooser.setInitialDirectory(new File(System.getProperty("user.dir")));
@@ -197,16 +272,17 @@ public class MainWindow
 				if (file != null)
 				{
 //					System.out.println(file.getName());
+					
 					readProjectsFilename = file.getName();
-					ExcelIO excelIO = new ExcelIO();
 					ProjectReader projectReader = new ProjectReader();
-					projectList = projectReader.createProjects(excelIO, file);
+					projectList = projectReader.createProjects(new ExcelIO(), file);
 				}
 				
 //				makeTestData_projects();
 //				projectList = SampleData.getProjects();
-				
+
 				//studentsRead = 0;
+				studentsRequired = 0;
 				//averageGPA = 0.0;
 				//GPArangeLow = 0.0;
 				//GPArangeHigh = 0.0;
@@ -244,6 +320,9 @@ public class MainWindow
 					projectsRead++;
 				}
 				
+				studentsRequired = electricalEngineersRequired + mechanicalEngineersRequired +
+								   civilEngineersRequired + computerEngineersRequired;
+				
 				updateTextFields();
 			}
 		};
@@ -254,23 +333,43 @@ public class MainWindow
 		return new EventHandler<ActionEvent>()
 		{
 			public void handle(ActionEvent event)
-			{
-				successFailMessage = "test";
-				
+			{				
 				FileChooser fileChooser = new FileChooser();
 				fileChooser.setTitle("Save Project Teams");
 				FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Excel files (*.xlsx, *.csv, *.xls)", "*.csv", "*.xls", "*.xlsx");
 				fileChooser.getExtensionFilters().add(extFilter);
 				fileChooser.setInitialDirectory(new File(System.getProperty("user.dir")));
 				File file = fileChooser.showSaveDialog(new Stage());
+				
+//				TeamBuilder teamBuilder = new TeamBuilder(projectList, studentList, GPArangeLow, GPArangeHigh);
+				TeamBuilder teamBuilder = new TeamBuilder(deepCopyProjectList(projectList), deepCopyStudentList(studentList), GPArangeLow, GPArangeHigh, gpaLevelingCheckBox.isSelected(), randomizeTeamsCheckBox.isSelected());
+				
+				teamBuilder.buildTeams();
+				
+				// re-sort the projects by name
+				Collections.sort(teamBuilder.getProjects(), new Comparator<Project>() {
+				    @Override
+				    public int compare(Project o1, Project o2) {
+				        return o1.getName().compareTo(o2.getName());
+				    }
+				});
+				
 				if (file != null)
 				{
 //					System.out.println(file.getName());
+					
+					ExcelIO writer = new ExcelIO();
+					writer.prepOutputFile(averageGPA);
+					for (int i = 0; i < teamBuilder.getProjects().size(); i++)
+					{
+						writer.writeNextRow(teamBuilder.getProjects().get(i), i+1);
+					}
+					writer.saveNewFile(file);
+					
+					// the gpa range:               GPArangeLow, GPArangeHigh
 				}
-				
-				TeamBuilder teamBuilder = new TeamBuilder(projectList, studentList, GPArangeLow, GPArangeHigh);
-				
-				teamBuilder.buildTeams();
+
+				successFailMessage = "not implemented";
 
 				updateTextFields();
 			}
@@ -282,6 +381,7 @@ public class MainWindow
 		readStudentsFilenameTextField.setText(readStudentsFilename);
 		readProjectsFilenameTextField.setText(readProjectsFilename);
 		studentsReadTextField.setText(Integer.toString(studentsRead));
+		studentsRequiredTextField.setText(Integer.toString(studentsRequired));
 		averageGPATextField.setText(String.format("%.2f", averageGPA));
 		rangeGPAlowTextField.setText(String.format("%.2f", GPArangeLow));
 		rangeGPAhighTextField.setText(String.format("%.2f", GPArangeHigh));
@@ -294,7 +394,7 @@ public class MainWindow
 		computerEngineersRequiredTextField.setText(Integer.toString(computerEngineersRequired));
 		civilEngineersReadTextField.setText(Integer.toString(civilEngineersRead));
 		civilEngineersRequiredTextField.setText(Integer.toString(civilEngineersRequired));
-		resultMessageTextField.setText(Integer.toString(0));
+		resultMessageTextField.setText(successFailMessage);
 	}
 	
 	public GridPane buildLayout()
@@ -346,6 +446,19 @@ public class MainWindow
 		GridPane.setMargin(readProjectsFilenameTextField, new Insets(5, 5, 5, 5));
 		myGridPane.getChildren().add(readProjectsFilenameTextField);
 		
+		projectsReadLabel = new Label("Projects Read");
+		GridPane.setConstraints(projectsReadLabel, 3, verticalIndex);
+		GridPane.setMargin(projectsReadLabel, new Insets(5, 5, 5, 5));
+		myGridPane.getChildren().add(projectsReadLabel);
+		
+		projectsReadTextField = new TextField();
+		projectsReadTextField.setEditable(false);
+		projectsReadTextField.setPrefWidth(textfieldWidth);
+		projectsReadTextField.setStyle("-fx-text-inner-color: grey;");
+		GridPane.setConstraints(projectsReadTextField, 2, verticalIndex++);
+		GridPane.setMargin(projectsReadTextField, new Insets(5, 5, 5, 5));
+		myGridPane.getChildren().add(projectsReadTextField);
+		
 		studentsReadLabel = new Label("Students Read");
 		GridPane.setConstraints(studentsReadLabel, 0, verticalIndex);
 		GridPane.setMargin(studentsReadLabel, new Insets(5, 5, 5, 5));
@@ -359,18 +472,18 @@ public class MainWindow
 		GridPane.setMargin(studentsReadTextField, new Insets(5, 5, 5, 5));
 		myGridPane.getChildren().add(studentsReadTextField);
 				
-		projectsReadLabel = new Label("Projects Read");
-		GridPane.setConstraints(projectsReadLabel, 3, verticalIndex);
-		GridPane.setMargin(projectsReadLabel, new Insets(5, 5, 5, 5));
-		myGridPane.getChildren().add(projectsReadLabel);
+		studentsRequiredLabel = new Label("Students Required");
+		GridPane.setConstraints(studentsRequiredLabel, 3, verticalIndex);
+		GridPane.setMargin(studentsRequiredLabel, new Insets(5, 5, 5, 5));
+		myGridPane.getChildren().add(studentsRequiredLabel);
 		
-		projectsReadTextField = new TextField();
-		projectsReadTextField.setEditable(false);
-		projectsReadTextField.setPrefWidth(textfieldWidth);
-		projectsReadTextField.setStyle("-fx-text-inner-color: grey;");
-		GridPane.setConstraints(projectsReadTextField, 2, verticalIndex++);
-		GridPane.setMargin(projectsReadTextField, new Insets(5, 5, 5, 5));
-		myGridPane.getChildren().add(projectsReadTextField);
+		studentsRequiredTextField = new TextField();
+		studentsRequiredTextField.setEditable(false);
+		studentsRequiredTextField.setPrefWidth(textfieldWidth);
+		studentsRequiredTextField.setStyle("-fx-text-inner-color: grey;");
+		GridPane.setConstraints(studentsRequiredTextField, 2, verticalIndex++);
+		GridPane.setMargin(studentsRequiredTextField, new Insets(5, 5, 5, 5));
+		myGridPane.getChildren().add(studentsRequiredTextField);
 		
 		electricalEngineersReadLabel = new Label("Electrical Engineers Read");
 		GridPane.setConstraints(electricalEngineersReadLabel, 0, verticalIndex);
@@ -524,6 +637,42 @@ public class MainWindow
 		GridPane.setMargin(helpLabel1, new Insets(5, 5, 5, 5));
 		myGridPane.getChildren().add(helpLabel1);
 		
+		gpaLevelingLabel = new Label("Enable GPA leveling");
+		GridPane.setConstraints(gpaLevelingLabel, 0, verticalIndex);
+		GridPane.setMargin(gpaLevelingLabel, new Insets(5, 5, 5, 5));
+		myGridPane.getChildren().add(gpaLevelingLabel);
+		
+		gpaLevelingCheckBox = new CheckBox();
+		gpaLevelingCheckBox.setSelected(true);
+		GridPane.setConstraints(gpaLevelingCheckBox, 1, verticalIndex);
+		GridPane.setMargin(gpaLevelingCheckBox, new Insets(5, 5, 5, 5));
+		myGridPane.getChildren().add(gpaLevelingCheckBox);
+		
+		helpLabel3 = new Label("<-- this impacts project preferences");
+		helpLabel3.setTextFill(Color.web("#ff0000"));
+		GridPane.setColumnSpan(helpLabel3, 2);
+		GridPane.setConstraints(helpLabel3, 2, verticalIndex++);
+		GridPane.setMargin(helpLabel3, new Insets(5, 5, 5, 5));
+		myGridPane.getChildren().add(helpLabel3);
+		
+		randomizeTeamsLabel = new Label("Enable team randomization");
+		GridPane.setConstraints(randomizeTeamsLabel, 0, verticalIndex);
+		GridPane.setMargin(randomizeTeamsLabel, new Insets(5, 5, 5, 5));
+		myGridPane.getChildren().add(randomizeTeamsLabel);
+		
+		randomizeTeamsCheckBox = new CheckBox();
+		randomizeTeamsCheckBox.setSelected(true);
+		GridPane.setConstraints(randomizeTeamsCheckBox, 1, verticalIndex);
+		GridPane.setMargin(randomizeTeamsCheckBox, new Insets(5, 5, 5, 5));
+		myGridPane.getChildren().add(randomizeTeamsCheckBox);
+		
+		helpLabel4 = new Label("<-- still respects majors and project preferences");
+		helpLabel4.setTextFill(Color.web("#ff0000"));
+		GridPane.setColumnSpan(helpLabel4, 2);
+		GridPane.setConstraints(helpLabel4, 2, verticalIndex++);
+		GridPane.setMargin(helpLabel4, new Insets(5, 5, 5, 5));
+		myGridPane.getChildren().add(helpLabel4);
+		
 		makeTeamsButton = new Button("Make Teams");
 		action = buildTeams();
 		makeTeamsButton.setOnAction(action);
@@ -534,7 +683,7 @@ public class MainWindow
 		helpLabel2 = new Label("<-- when ready, press to make teams");
 		helpLabel2.setTextFill(Color.web("#ff0000"));
 		GridPane.setColumnSpan(helpLabel2, 2);
-		GridPane.setConstraints(helpLabel2, 1, verticalIndex++);
+		GridPane.setConstraints(helpLabel2, 2, verticalIndex++);
 		GridPane.setMargin(helpLabel2, new Insets(5, 5, 5, 5));
 		myGridPane.getChildren().add(helpLabel2);
 		

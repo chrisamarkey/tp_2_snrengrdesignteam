@@ -104,10 +104,10 @@ public class ExcelIO { // Overloaded methods based on which class is being creat
 		while (projectCI.hasNext()) { 
 			// Iterates as long as there is another non-blank cell in the row, meaning it should be able to handle teams of various sizes
 			cell = projectCI.next(); 
-			meCount = 0;
-			eeCount = 0;
-			civeCount = 0;
-			ceCount = 0;
+//			meCount = 0;
+//			eeCount = 0;
+//			civeCount = 0;
+//			ceCount = 0;
 			switch (formatter.formatCellValue(cell)) {
 			case ("Mechanical Engineer"): {
 				meCount++;

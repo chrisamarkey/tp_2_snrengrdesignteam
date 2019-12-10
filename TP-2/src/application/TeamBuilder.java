@@ -5,15 +5,16 @@ import java.util.Map.Entry;
 
 public class TeamBuilder {
 	
-	LinkedList<Project> projectList;
-	LinkedList<Student> studentList;
-	double gpaLow;
-	double gpaHigh;
+	private LinkedList<Project> projectList;
+	private LinkedList<Student> studentList;
+	private double gpaLow;
+	private double gpaHigh;
+	private boolean gpaLeveling;
 	
 	enum TeamBuildingState
 	{
 		eInit,
-		eHighPriorityDecisions,
+		eFillByWeightedFavProj,
 		eFillByPreference,
 		eEveryoneElse,
 		eGPAleveling,
@@ -22,14 +23,28 @@ public class TeamBuilder {
 	
 	TeamBuildingState teamBuildingState;
 	
-	public TeamBuilder(LinkedList<Project> projects, LinkedList<Student> students, double gpaLow, double gpaHigh)
+	public TeamBuilder(LinkedList<Project> projects, LinkedList<Student> students, double gpaLow, double gpaHigh, boolean gpaLeveling, boolean teamRandomization)
 	{
 		projectList = projects;
 		studentList = students;
-		Collections.shuffle(studentList); // this line removes determinism from the making of teams, it is pseudo-randomized here
+		if (teamRandomization == true)
+		{
+			Collections.shuffle(studentList); // this line removes determinism from the making of teams, it is pseudo-randomized here
+		}
 		this.gpaLow = gpaLow;
 		this.gpaHigh = gpaHigh;
+		this.gpaLeveling = gpaLeveling;
 		teamBuildingState = TeamBuildingState.eInit;
+	}
+	
+	public LinkedList<Student> getStudents()
+	{
+		return studentList;
+	}
+	
+	public LinkedList<Project> getProjects()
+	{
+		return projectList;
 	}
 	
 	public void buildTeams()
@@ -63,13 +78,13 @@ public class TeamBuilder {
 					}
 					
 //					System.out.println(teamBuildingState);
-					teamBuildingState = TeamBuildingState.eHighPriorityDecisions;
+					teamBuildingState = TeamBuildingState.eFillByWeightedFavProj;
 					break;
 				}
 				
-				case eHighPriorityDecisions:
+				case eFillByWeightedFavProj:
 				{
-					// do the important things
+					// do the stuff
 //					System.out.println(teamBuildingState);
 					teamBuildingState = TeamBuildingState.eFillByPreference;
 					break;
@@ -111,11 +126,20 @@ public class TeamBuilder {
 				
 				case eGPAleveling:
 				{
-					// this says that we will pass through the projects 3 times trying to level the gpas
+					teamBuildingState = TeamBuildingState.eCleanUp;
+					
+					if (gpaLeveling == false)
+					{
+						break;
+					}
+					
+					// this says that we will pass through the projects 10 times trying to level the gpas
 					// during each pass, 1 student might change from each team out of gpa range
 					// currently only looking at teams with too low gpa
 					// a MAJOR problem with this is that students might be traded who now lost project preferences
-					for (int cycleCount = 0; cycleCount < 3; cycleCount++)
+					// the loop count is arbitrary, it's just X attempts at leveling teams (max 1 student per team per attempt)
+					// there is no guarantee that all teams fit within the range, even if it is possible to do so
+					for (int cycleCount = 0; cycleCount < 10; cycleCount++)
 					{
 						boolean aProjectIsOutOfGPArange = false;
 						
@@ -142,6 +166,7 @@ public class TeamBuilder {
 						
 						Collections.reverse(projectList);
 						
+						// we only look at 1/2 the teams...we pick one low gpa team and one high gpa team to swap students
 						for (int i = 0; i < projectList.size() / 2; i++)
 						{
 							if (projectList.get(i).getTeamGPA() < gpaLow)
@@ -207,7 +232,6 @@ public class TeamBuilder {
 						}
 					}
 //					System.out.println(teamBuildingState);
-					teamBuildingState = TeamBuildingState.eCleanUp;
 					break;
 				}
 				
@@ -234,7 +258,7 @@ public class TeamBuilder {
 					
 					for (Project project : projectList)
 					{
-						// re-sort the actual members by reverse gpa of this low gpa team
+						// re-sort the actual members by name
 						Collections.sort(project.getActualMembers(), new Comparator<Student>() {
 						    @Override
 						    public int compare(Student o1, Student o2) {
@@ -247,6 +271,7 @@ public class TeamBuilder {
 					{
 						System.out.println(project.getName() + " = " + project.getActualMembers() + ": " + project.getTeamGPA());
 					}
+					System.out.println();
 					return;
 				}
 			}
@@ -312,8 +337,8 @@ public class TeamBuilder {
 			{
 				if (student.getName().equals(value))
 				{
-					System.out.println("student = " + student.getID());
-					System.out.println("existing student = " + existingStudent.getID());
+//					System.out.println("student = " + student.getID());
+//					System.out.println("existing student = " + existingStudent.getID());
 					return true;
 				}
 			}
@@ -325,8 +350,8 @@ public class TeamBuilder {
 			{
 				if (existingStudent.getName().equals(value))
 				{
-					System.out.println("existing student = " + existingStudent.getName());
-					System.out.println("student = " + student.getName());
+//					System.out.println("existing student = " + existingStudent.getName());
+//					System.out.println("student = " + student.getName());
 					return true;
 				}
 			}
@@ -348,7 +373,7 @@ public class TeamBuilder {
 		
 		studentBodyGPA /= myStudents.size();
 		
-		TeamBuilder teamBuilder = new TeamBuilder(SampleData.getProjects(), SampleData.getStudents(), studentBodyGPA - gpaRange, studentBodyGPA + gpaRange);
+		TeamBuilder teamBuilder = new TeamBuilder(SampleData.getProjects(), SampleData.getStudents(), studentBodyGPA - gpaRange, studentBodyGPA + gpaRange, true, true);
 		
 		teamBuilder.buildTeams();
 	}
