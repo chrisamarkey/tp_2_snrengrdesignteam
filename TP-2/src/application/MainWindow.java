@@ -119,8 +119,6 @@ public class MainWindow
 		{
 			public void handle(ActionEvent event)
 			{
-				System.out.println("Working Directory = " + System.getProperty("user.dir"));
-				
 				FileChooser fileChooser = new FileChooser();
 				fileChooser.setTitle("Open Students List");
 				FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Excel files (*.xlsx, *.csv, *.xls)", "*.csv", "*.xls", "*.xlsx");
