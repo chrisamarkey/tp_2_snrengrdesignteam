@@ -34,5 +34,6 @@
 	<classpathentry kind="lib" path="C:/my files/UST/Current Semester/SEIS 635 - Software Analysis and Design/homework/tp2/TP-2/All Needed Libraries/poi-ooxml-schemas-4.1.1.jar"/>
 	<classpathentry kind="lib" path="C:/my files/UST/Current Semester/SEIS 635 - Software Analysis and Design/homework/tp2/TP-2/All Needed Libraries/poi-scratchpad-4.1.1.jar"/>
 	<classpathentry kind="lib" path="C:/my files/UST/Current Semester/SEIS 635 - Software Analysis and Design/homework/tp2/TP-2/All Needed Libraries/xmlbeans-3.1.0.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
