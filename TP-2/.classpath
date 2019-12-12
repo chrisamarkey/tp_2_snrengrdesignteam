@@ -6,6 +6,7 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="test"/>
 	<classpathentry kind="lib" path="C:/my files/UST/Current Semester/SEIS 635 - Software Analysis and Design/homework/tp2/TP-2/All Needed Libraries/activation-1.1.1.jar"/>
 	<classpathentry kind="lib" path="C:/my files/UST/Current Semester/SEIS 635 - Software Analysis and Design/homework/tp2/TP-2/All Needed Libraries/commons-codec-1.13.jar"/>
 	<classpathentry kind="lib" path="C:/my files/UST/Current Semester/SEIS 635 - Software Analysis and Design/homework/tp2/TP-2/All Needed Libraries/commons-collections4-4.4.jar"/>

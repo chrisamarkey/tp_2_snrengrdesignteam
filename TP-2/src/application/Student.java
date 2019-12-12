@@ -57,7 +57,7 @@ public class Student {
 		this.name = input;
 	}
 	
-	public Integer getID() {
+	public int getID() {
 		return this.id;
 	}
 	
@@ -65,7 +65,7 @@ public class Student {
 		this.id = input;
 	}
 	
-	public Double getGPA() {
+	public double getGPA() {
 		return this.gpa;
 	}
 	
@@ -90,7 +90,7 @@ public class Student {
 		this.favProject = input;
 	}
 	
-	public Integer getWeight() {
+	public int getWeight() {
 		return this.weight;
 	}
 	
@@ -147,34 +147,34 @@ public class Student {
 	{
 		return name;
 	}
-
-	public static void main(String[] args) {
-		
-		Student paper = new Student("paper", 1111, 4.0, "covering rocks", "playing rps", 0, "playing rps",
-				new LinkedList<String>(), new LinkedList<String>());
-		Student rock = new Student("rock", 2222, 3.0, "smashing scissors", "playing rps", 0, "playing rps",
-				new LinkedList<String>(), new LinkedList<String>());
-		Student scissors = new Student("scissors", 3333, 2.0, "cutting paper", "playing rps", 0, "playing rps",
-				new LinkedList<String>(), new LinkedList<String>());
-		
-		paper.addEnemyNames(scissors.getName());
-		paper.addEnemyNames(rock.getName());
-		rock.addEnemyNames(paper.getName());
-		rock.addEnemyNames(scissors.getName());
-		scissors.addEnemyNames(rock.getName());
-		scissors.addEnemyNames(paper.getName());
-		System.out.println(paper.enemyNames);
-		System.out.println(rock.enemyNames);
-		System.out.println(scissors.enemyNames);
-
-		paper.addPreferredProjects("Kite"); // Added 11/25/19
-		paper.addPreferredProjects("Surf");
-		rock.addPreferredProjects("Bike");
-		rock.addPreferredProjects("Race");
-		scissors.addPreferredProjects("Car");
-		scissors.addPreferredProjects("Pool");
-		System.out.println(paper.preferredProjects);
-		System.out.println(rock.preferredProjects);
-		System.out.println(scissors.preferredProjects);
-	}
+//
+//	public static void main(String[] args) {
+//		
+//		Student paper = new Student("paper", 1111, 4.0, "covering rocks", "playing rps", 0, "playing rps",
+//				new LinkedList<String>(), new LinkedList<String>());
+//		Student rock = new Student("rock", 2222, 3.0, "smashing scissors", "playing rps", 0, "playing rps",
+//				new LinkedList<String>(), new LinkedList<String>());
+//		Student scissors = new Student("scissors", 3333, 2.0, "cutting paper", "playing rps", 0, "playing rps",
+//				new LinkedList<String>(), new LinkedList<String>());
+//		
+//		paper.addEnemyNames(scissors.getName());
+//		paper.addEnemyNames(rock.getName());
+//		rock.addEnemyNames(paper.getName());
+//		rock.addEnemyNames(scissors.getName());
+//		scissors.addEnemyNames(rock.getName());
+//		scissors.addEnemyNames(paper.getName());
+//		System.out.println(paper.enemyNames);
+//		System.out.println(rock.enemyNames);
+//		System.out.println(scissors.enemyNames);
+//
+//		paper.addPreferredProjects("Kite"); // Added 11/25/19
+//		paper.addPreferredProjects("Surf");
+//		rock.addPreferredProjects("Bike");
+//		rock.addPreferredProjects("Race");
+//		scissors.addPreferredProjects("Car");
+//		scissors.addPreferredProjects("Pool");
+//		System.out.println(paper.preferredProjects);
+//		System.out.println(rock.preferredProjects);
+//		System.out.println(scissors.preferredProjects);
+//	}
 }
