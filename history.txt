@@ -1,0 +1,7 @@
+12/8/19 (CAM):  Made final changes to Project, Student and TeamBuilder classes. 
+    Note: Craig has built a new TeamBuilder class and has modified the Project and Student classes that he and I originally built.
+12/5/19 (CAM):  Completed Project and Student classes were integrated with new TeamBuilder class.
+11/28/19 (CAM): Updated Project and Student classes with new attributes.
+11/25/19 (CAM): Updated Project and Student classes with new attributes.
+11/22/19 (CAM): Updated Project and Student classes.
+11/17/19 (CAM):	Initial commit to Markey branch for the Student and Project classes.
