@@ -10,6 +10,9 @@ public class TeamBuilder {
 	private double gpaLow;
 	private double gpaHigh;
 	private boolean gpaLeveling;
+	private boolean preferredProjects;
+	private boolean favortieProjects;
+	private boolean studentEnemies;
 	
 	enum TeamBuildingState
 	{
@@ -23,7 +26,7 @@ public class TeamBuilder {
 	
 	TeamBuildingState teamBuildingState;
 	
-	public TeamBuilder(LinkedList<Project> projects, LinkedList<Student> students, double gpaLow, double gpaHigh, boolean gpaLeveling, boolean teamRandomization)
+	public TeamBuilder(LinkedList<Project> projects, LinkedList<Student> students, double gpaLow, double gpaHigh, boolean favoriteProjects, boolean preferredProjects, boolean studentEnemies, boolean gpaLeveling, boolean teamRandomization)
 	{
 		projectList = projects;
 		studentList = students;
@@ -34,6 +37,9 @@ public class TeamBuilder {
 		this.gpaLow = gpaLow;
 		this.gpaHigh = gpaHigh;
 		this.gpaLeveling = gpaLeveling;
+		this.favortieProjects = favoriteProjects;
+		this.preferredProjects = preferredProjects;
+		this.studentEnemies = studentEnemies;
 		teamBuildingState = TeamBuildingState.eInit;
 	}
 	
@@ -86,12 +92,38 @@ public class TeamBuilder {
 				{
 					// do the stuff
 //					System.out.println(teamBuildingState);
+
 					teamBuildingState = TeamBuildingState.eFillByPreference;
+					
+					if (favortieProjects == false)
+					{
+						break;
+					}
+					
+					@SuppressWarnings("unchecked")
+					LinkedList<Student> tempStudentList = (LinkedList<Student>)studentList.clone();	//shallow copy
+					
+					// sort students by weight of favorite project
+					Collections.sort(tempStudentList, new Comparator<Student>() {
+					    @Override
+					    public int compare(Student o1, Student o2) {
+					        return o2.getWeight() - o1.getWeight();
+					    }
+					});
+					
+					teamBuildAlgorithm(tempStudentList, projectList, false, true);
 					break;
 				}
 				
 				case eFillByPreference:	// takes popularity of projects and student project preference into account
 				{
+					teamBuildingState = TeamBuildingState.eEveryoneElse;
+					
+					if (preferredProjects == false)
+					{
+						break;
+					}
+					
 					// re-sort the projects by reverse popularity
 					Collections.sort(projectList, new Comparator<Project>() {
 					    @Override
@@ -102,9 +134,8 @@ public class TeamBuilder {
 					
 					Collections.reverse(projectList);
 					
-					teamBuildAlgorithm(studentList, projectList, true);
+					teamBuildAlgorithm(studentList, projectList, true, false);
 					
-					teamBuildingState = TeamBuildingState.eEveryoneElse;
 					break;
 				}
 				
@@ -118,7 +149,7 @@ public class TeamBuilder {
 					    }
 					});
 					
-					teamBuildAlgorithm(studentList, projectList, false);
+					teamBuildAlgorithm(studentList, projectList, false, false);
 //					System.out.println(teamBuildingState);
 					teamBuildingState = TeamBuildingState.eGPAleveling;
 					break;
@@ -278,7 +309,7 @@ public class TeamBuilder {
 		}
 	}
 	
-	private void teamBuildAlgorithm(LinkedList<Student> stuList, LinkedList<Project> projList, boolean preferenceRestriction)
+	private void teamBuildAlgorithm(LinkedList<Student> stuList, LinkedList<Project> projList, boolean preferenceRestriction, boolean favoriteProjects)
 	{
 		for (Project project : projList)	// iterate through project list
 		{
@@ -301,8 +332,9 @@ public class TeamBuilder {
 						if (
 							(student.getAssignedProject().contentEquals("")) &&	   	// if available
 							(student.getMajor().equals(entry.getKey()))	&&		   	// and correct major
-							((preferenceRestriction == false) || (checkStudentProjectPreferenceMatch(student, project) == true)) &&	   		// and student prefers this project
-							(checkForEnemies(student, project) == false)	   		// and no enemies
+							((preferenceRestriction == false) || (checkStudentProjectPreferenceMatch(student, project) == true)) &&	// student prefers this project
+							((favoriteProjects == false) || (student.getFavProject().equals(project.getName()))) &&	   			// student's favorite project
+							((studentEnemies == false) || (checkForEnemies(student, project) == false))	   		// and no enemies
 						   )
 						{
 							project.addActualMembers(student);				// add student to project

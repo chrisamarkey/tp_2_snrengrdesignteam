@@ -74,6 +74,12 @@ public class MainWindow
 	Label rangeGPALabel;
 	TextField rangeGPAlowTextField;
 	TextField rangeGPAhighTextField;
+	Label favortieProjectLabel;
+	CheckBox preferredProjectCheckBox;
+	Label preferredProjectLabel;
+	CheckBox favortieProjectCheckBox;
+	Label studentEnemiesLabel;
+	CheckBox studentEnemiesCheckBox;
 	Label gpaLevelingLabel;
 	CheckBox gpaLevelingCheckBox;
 	Label randomizeTeamsLabel;
@@ -86,6 +92,9 @@ public class MainWindow
 	Label helpLabel2;
 	Label helpLabel3;
 	Label helpLabel4;
+	Label helpLabel5;
+	Label helpLabel6;
+	Label helpLabel7;
 	
 	int testVal = 0;
 	
@@ -342,7 +351,7 @@ public class MainWindow
 				File file = fileChooser.showSaveDialog(new Stage());
 				
 //				TeamBuilder teamBuilder = new TeamBuilder(projectList, studentList, GPArangeLow, GPArangeHigh);
-				TeamBuilder teamBuilder = new TeamBuilder(deepCopyProjectList(projectList), deepCopyStudentList(studentList), GPArangeLow, GPArangeHigh, gpaLevelingCheckBox.isSelected(), randomizeTeamsCheckBox.isSelected());
+				TeamBuilder teamBuilder = new TeamBuilder(deepCopyProjectList(projectList), deepCopyStudentList(studentList), GPArangeLow, GPArangeHigh, favortieProjectCheckBox.isSelected(), preferredProjectCheckBox.isSelected(), studentEnemiesCheckBox.isSelected(), gpaLevelingCheckBox.isSelected(), randomizeTeamsCheckBox.isSelected());
 				
 				teamBuilder.buildTeams();
 				
@@ -637,6 +646,60 @@ public class MainWindow
 		GridPane.setMargin(helpLabel1, new Insets(5, 5, 5, 5));
 		myGridPane.getChildren().add(helpLabel1);
 		
+		favortieProjectLabel = new Label("Enable favorite projects");
+		GridPane.setConstraints(favortieProjectLabel, 0, verticalIndex);
+		GridPane.setMargin(favortieProjectLabel, new Insets(5, 5, 5, 5));
+		myGridPane.getChildren().add(favortieProjectLabel);
+		
+		favortieProjectCheckBox = new CheckBox();
+		favortieProjectCheckBox.setSelected(true);
+		GridPane.setConstraints(favortieProjectCheckBox, 1, verticalIndex);
+		GridPane.setMargin(favortieProjectCheckBox, new Insets(5, 5, 5, 5));
+		myGridPane.getChildren().add(favortieProjectCheckBox);
+		
+		helpLabel5 = new Label("<-- projects that are well suited to students");
+		helpLabel5.setTextFill(Color.web("#ff0000"));
+		GridPane.setColumnSpan(helpLabel5, 2);
+		GridPane.setConstraints(helpLabel5, 2, verticalIndex++);
+		GridPane.setMargin(helpLabel5, new Insets(5, 5, 5, 5));
+		myGridPane.getChildren().add(helpLabel5);
+		
+		preferredProjectLabel = new Label("Enable project preferences");
+		GridPane.setConstraints(preferredProjectLabel, 0, verticalIndex);
+		GridPane.setMargin(preferredProjectLabel, new Insets(5, 5, 5, 5));
+		myGridPane.getChildren().add(preferredProjectLabel);
+		
+		preferredProjectCheckBox = new CheckBox();
+		preferredProjectCheckBox.setSelected(true);
+		GridPane.setConstraints(preferredProjectCheckBox, 1, verticalIndex);
+		GridPane.setMargin(preferredProjectCheckBox, new Insets(5, 5, 5, 5));
+		myGridPane.getChildren().add(preferredProjectCheckBox);
+		
+		helpLabel6 = new Label("<-- projects students want to be in");
+		helpLabel6.setTextFill(Color.web("#ff0000"));
+		GridPane.setColumnSpan(helpLabel6, 2);
+		GridPane.setConstraints(helpLabel6, 2, verticalIndex++);
+		GridPane.setMargin(helpLabel6, new Insets(5, 5, 5, 5));
+		myGridPane.getChildren().add(helpLabel6);
+		
+		studentEnemiesLabel = new Label("Enable student enemies");
+		GridPane.setConstraints(studentEnemiesLabel, 0, verticalIndex);
+		GridPane.setMargin(studentEnemiesLabel, new Insets(5, 5, 5, 5));
+		myGridPane.getChildren().add(studentEnemiesLabel);
+		
+		studentEnemiesCheckBox = new CheckBox();
+		studentEnemiesCheckBox.setSelected(true);
+		GridPane.setConstraints(studentEnemiesCheckBox, 1, verticalIndex);
+		GridPane.setMargin(studentEnemiesCheckBox, new Insets(5, 5, 5, 5));
+		myGridPane.getChildren().add(studentEnemiesCheckBox);
+		
+		helpLabel6 = new Label("<-- some students dislike each other?");
+		helpLabel6.setTextFill(Color.web("#ff0000"));
+		GridPane.setColumnSpan(helpLabel6, 2);
+		GridPane.setConstraints(helpLabel6, 2, verticalIndex++);
+		GridPane.setMargin(helpLabel6, new Insets(5, 5, 5, 5));
+		myGridPane.getChildren().add(helpLabel6);
+		
 		gpaLevelingLabel = new Label("Enable GPA leveling");
 		GridPane.setConstraints(gpaLevelingLabel, 0, verticalIndex);
 		GridPane.setMargin(gpaLevelingLabel, new Insets(5, 5, 5, 5));
@@ -648,7 +711,7 @@ public class MainWindow
 		GridPane.setMargin(gpaLevelingCheckBox, new Insets(5, 5, 5, 5));
 		myGridPane.getChildren().add(gpaLevelingCheckBox);
 		
-		helpLabel3 = new Label("<-- this impacts project preferences");
+		helpLabel3 = new Label("<-- this impacts project preferences (not favorites)");
 		helpLabel3.setTextFill(Color.web("#ff0000"));
 		GridPane.setColumnSpan(helpLabel3, 2);
 		GridPane.setConstraints(helpLabel3, 2, verticalIndex++);
@@ -666,7 +729,7 @@ public class MainWindow
 		GridPane.setMargin(randomizeTeamsCheckBox, new Insets(5, 5, 5, 5));
 		myGridPane.getChildren().add(randomizeTeamsCheckBox);
 		
-		helpLabel4 = new Label("<-- still respects majors and project preferences");
+		helpLabel4 = new Label("<-- still respects majors/preferences/favorites/enemies");
 		helpLabel4.setTextFill(Color.web("#ff0000"));
 		GridPane.setColumnSpan(helpLabel4, 2);
 		GridPane.setConstraints(helpLabel4, 2, verticalIndex++);

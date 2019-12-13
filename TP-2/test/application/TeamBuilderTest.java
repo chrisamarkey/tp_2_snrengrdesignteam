@@ -156,33 +156,36 @@ class TeamBuilderTest
 		stuList.get(60).addEnemyNames(stuList.get(61).getName()); // ce0 doesn't like ce1
 		stuList.get(61).addEnemyNames(stuList.get(60).getName()); // ce1 doesn't like ce0
 		
-		stuList.get(29).addPreferredProjects("project9");
-		stuList.get(59).addPreferredProjects("project9");
-		stuList.get(89).addPreferredProjects("project9");
+		stuList.get(29).addPreferredProjects("project09");
+		stuList.get(59).addPreferredProjects("project09");
+		stuList.get(89).addPreferredProjects("project09");
 		
-		stuList.get(70).addPreferredProjects("project2");
-		stuList.get(71).addPreferredProjects("project3");
-		stuList.get(72).addPreferredProjects("project4");
-		stuList.get(73).addPreferredProjects("project5");
-		stuList.get(74).addPreferredProjects("project6");
-		stuList.get(75).addPreferredProjects("project6");
-		stuList.get(76).addPreferredProjects("project7");
-		stuList.get(77).addPreferredProjects("project7");
-		stuList.get(78).addPreferredProjects("project8");
-		stuList.get(79).addPreferredProjects("project8");
+		stuList.get(70).addPreferredProjects("project02");
+		stuList.get(71).addPreferredProjects("project03");
+		stuList.get(72).addPreferredProjects("project04");
+		stuList.get(73).addPreferredProjects("project05");
+		stuList.get(74).addPreferredProjects("project06");
+		stuList.get(75).addPreferredProjects("project06");
+		stuList.get(76).addPreferredProjects("project07");
+		stuList.get(77).addPreferredProjects("project07");
+		stuList.get(78).addPreferredProjects("project08");
+		stuList.get(79).addPreferredProjects("project08");
+		
+		stuList.get(40).setFavProject("project05");
+		stuList.get(40).setWeight(3);
 		
 		LinkedList<Project> projList = new LinkedList<>();
 		
-		projList.add(new Project("project0", 0, 0, 0, new HashMap<>(), new LinkedList<Student>()));
-		projList.add(new Project("project1", 1, 0, 0, new HashMap<>(), new LinkedList<Student>()));
-		projList.add(new Project("project2", 2, 0, 0, new HashMap<>(), new LinkedList<Student>()));
-		projList.add(new Project("project3", 3, 0, 0, new HashMap<>(), new LinkedList<Student>()));
-		projList.add(new Project("project4", 4, 0, 0, new HashMap<>(), new LinkedList<Student>()));
-		projList.add(new Project("project5", 5, 0, 0, new HashMap<>(), new LinkedList<Student>()));
-		projList.add(new Project("project6", 6, 0, 0, new HashMap<>(), new LinkedList<Student>()));
-		projList.add(new Project("project7", 7, 0, 0, new HashMap<>(), new LinkedList<Student>()));
-		projList.add(new Project("project8", 8, 0, 0, new HashMap<>(), new LinkedList<Student>()));
-		projList.add(new Project("project9", 9, 0, 0, new HashMap<>(), new LinkedList<Student>()));
+		projList.add(new Project("project00", 0, 0, 0, new HashMap<>(), new LinkedList<Student>()));
+		projList.add(new Project("project01", 1, 0, 0, new HashMap<>(), new LinkedList<Student>()));
+		projList.add(new Project("project02", 2, 0, 0, new HashMap<>(), new LinkedList<Student>()));
+		projList.add(new Project("project03", 3, 0, 0, new HashMap<>(), new LinkedList<Student>()));
+		projList.add(new Project("project04", 4, 0, 0, new HashMap<>(), new LinkedList<Student>()));
+		projList.add(new Project("project05", 5, 0, 0, new HashMap<>(), new LinkedList<Student>()));
+		projList.add(new Project("project06", 6, 0, 0, new HashMap<>(), new LinkedList<Student>()));
+		projList.add(new Project("project07", 7, 0, 0, new HashMap<>(), new LinkedList<Student>()));
+		projList.add(new Project("project08", 8, 0, 0, new HashMap<>(), new LinkedList<Student>()));
+		projList.add(new Project("project09", 9, 0, 0, new HashMap<>(), new LinkedList<Student>()));
 
 		projList.get(0).addRequiredMembers("Electrical Engineer", 2);
 		projList.get(0).addRequiredMembers("Mechanical Engineer", 3);
@@ -244,14 +247,14 @@ class TeamBuilderTest
 		
 		studentBodyGPA /= stuList.size();
 		
-		TeamBuilder teamBuilder = new TeamBuilder(projList, stuList, studentBodyGPA - gpaRange, studentBodyGPA + gpaRange, true, true);
+		TeamBuilder teamBuilder = new TeamBuilder(projList, stuList, studentBodyGPA - gpaRange, studentBodyGPA + gpaRange, true, true, true, true, true);
 		
 		teamBuilder.buildTeams();
 
 		assertNotNull(teamBuilder.getStudents());
 		assertNotNull(teamBuilder.getProjects());
 		
-		teamBuilder = new TeamBuilder(projList, stuList, studentBodyGPA - gpaRange, studentBodyGPA + gpaRange, false, false);
+		teamBuilder = new TeamBuilder(projList, stuList, studentBodyGPA - gpaRange, studentBodyGPA + gpaRange, false, false, false, false, false);
 		
 		teamBuilder.buildTeams();
 
