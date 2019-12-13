@@ -1,3 +1,4 @@
+12/13/19 (CAM): Uploaded Domain Class Diagram and Use Case document.
 12/12/19 (AJL): Updated Proof of Concept input files and other deliverables.
 12/12/19 (CPG): Final integration and bug fixing
 12/11/19 (AJL): Creation of example student and project files for presentation
