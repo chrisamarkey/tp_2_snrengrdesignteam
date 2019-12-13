@@ -221,18 +221,68 @@ public class ExcelIO { // Overloaded methods based on which class is being creat
 		
 	}
 	
-	public void saveNewFile(File destinationFile) {
+	public boolean saveNewFile(File destinationFile) {
 		try {
 		teamStream = new FileOutputStream(destinationFile);
 		teamWB.write(teamStream);
+		return true;
 		}
 		catch (IOException e) {
 			e.printStackTrace();
+			return false;
 		}
 	}
 	
 	public CellReference createCellReference(Cell cell) {
 		CellReference cellRef = new CellReference(teamRow.getRowNum(), cell.getColumnIndex());
 		return cellRef;
+	}
+
+	public Workbook getStudentWB() {
+		return studentWB;
+	}
+
+	public Workbook getProjectWB() {
+		return projectWB;
+	}
+
+	public Sheet getStudentSheet() {
+		return studentSheet;
+	}
+
+	public Sheet getProjectSheet() {
+		return projectSheet;
+	}
+
+	public Row getStudentRow() {
+		return studentRow;
+	}
+
+	public Row getProjectRow() {
+		return projectRow;
+	}
+
+	public Iterator<Row> getStudentRI() {
+		return studentRI;
+	}
+
+	public Iterator<Row> getProjectRI() {
+		return projectRI;
+	}
+	
+	public double getAvgGPA() {
+		return avgGPA;
+	}
+
+	public Workbook getTeamWB() {
+		return teamWB;
+	}
+
+	public Sheet getTeamSheet() {
+		return teamSheet;
+	}
+
+	public Row getTeamRow() {
+		return teamRow;
 	}
 }
