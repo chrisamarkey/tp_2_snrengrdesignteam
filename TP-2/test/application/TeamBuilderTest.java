@@ -149,12 +149,17 @@ class TeamBuilderTest
 		stuList.add(new Student("CE28", 428, 3.8, "Civil Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
 		stuList.add(new Student("CE29", 429, 3.9, "Civil Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));
 		
+		stuList.get(0).addEnemyNames(stuList.get(1).getName()); // ee0 doesn't like ee1
+		stuList.get(1).addEnemyNames(stuList.get(0).getName()); // ee1 doesn't like ee0
+		stuList.get(30).addEnemyNames(stuList.get(31).getName()); // me0 doesn't like me1
+		stuList.get(31).addEnemyNames(stuList.get(30).getName()); // me1 doesn't like me0
+		stuList.get(60).addEnemyNames(stuList.get(61).getName()); // ce0 doesn't like ce1
+		stuList.get(61).addEnemyNames(stuList.get(60).getName()); // ce1 doesn't like ce0
 		
 		stuList.get(29).addPreferredProjects("project9");
 		stuList.get(59).addPreferredProjects("project9");
 		stuList.get(89).addPreferredProjects("project9");
 		
-
 		stuList.get(70).addPreferredProjects("project2");
 		stuList.get(71).addPreferredProjects("project3");
 		stuList.get(72).addPreferredProjects("project4");
@@ -166,7 +171,7 @@ class TeamBuilderTest
 		stuList.get(78).addPreferredProjects("project8");
 		stuList.get(79).addPreferredProjects("project8");
 		
-LinkedList<Project> projList = new LinkedList<>();
+		LinkedList<Project> projList = new LinkedList<>();
 		
 		projList.add(new Project("project0", 0, 0, 0, new HashMap<>(), new LinkedList<Student>()));
 		projList.add(new Project("project1", 1, 0, 0, new HashMap<>(), new LinkedList<Student>()));
@@ -240,6 +245,13 @@ LinkedList<Project> projList = new LinkedList<>();
 		studentBodyGPA /= stuList.size();
 		
 		TeamBuilder teamBuilder = new TeamBuilder(projList, stuList, studentBodyGPA - gpaRange, studentBodyGPA + gpaRange, true, true);
+		
+		teamBuilder.buildTeams();
+		
+		teamBuilder.getStudents();
+		teamBuilder.getProjects();
+		
+		teamBuilder = new TeamBuilder(projList, stuList, studentBodyGPA - gpaRange, studentBodyGPA + gpaRange, false, false);
 		
 		teamBuilder.buildTeams();
 	}

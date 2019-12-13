@@ -5,7 +5,7 @@ import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
-@SuiteClasses({ProjectTest.class, StudentTest.class})
+@SuiteClasses({ProjectTest.class, StudentTest.class, TeamBuilder.class})
 public class AllTests
 {
 
