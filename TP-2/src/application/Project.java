@@ -49,7 +49,7 @@ public class Project
 		this.name = input;
 	}
 
-	public Integer getID() { // 12/4-19 Changed projectList to project
+	public int getID() { // 12/4-19 Changed projectList to project
 		return this.id;
 	}
 	
@@ -57,7 +57,7 @@ public class Project
 		this.id = input;
 	}
 
-	public Integer getNumInterested() { // 12/4-19 Changed projectList to project
+	public int getNumInterested() { // 12/4-19 Changed projectList to project
 		return this.numInterested;
 	}
 
@@ -119,79 +119,79 @@ public class Project
 		return (totalGPA/actualMembers.size());
 	}
 
-	public static void main(String[] args) {
-		
-		LinkedList<Project> projList = new LinkedList<>();
-		projList.add(new Project("project0", 0, 0, 0, new HashMap<>(), new LinkedList<Student>()));
-		projList.add(new Project("project1", 1, 0, 0, new HashMap<>(), new LinkedList<Student>()));
-		projList.add(new Project("project2", 2, 0, 0, new HashMap<>(), new LinkedList<Student>()));
-
-		projList.get(0).addRequiredMembers("Electrical Engineer", 1);
-		projList.get(0).addRequiredMembers("Electrical Engineer", 1);
-		projList.get(0).addRequiredMembers("Electrical Engineer", 2);
-		projList.get(0).addRequiredMembers("Mechanical Engineer", 2);
-		projList.get(0).addRequiredMembers("Civil Engineer", 1);
-
-		projList.get(1).addRequiredMembers("Electrical Engineer", 2);
-		projList.get(1).addRequiredMembers("Mechanical Engineer", 4);
-		projList.get(1).addRequiredMembers("Civil Engineer", 3);
-
-		projList.get(2).addRequiredMembers("Electrical Engineer", 2);
-		projList.get(2).addRequiredMembers("Mechanical Engineer", 1);
-		projList.get(2).addRequiredMembers("Civil Engineer", 2);
-		
-		LinkedList<Student> studentList = new LinkedList<>();
-		
-		studentList.add(new Student("EE0", 10, 4.0, "Electrical Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));
-		studentList.add(new Student("EE1", 11, 4.0, "Electrical Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
-		studentList.add(new Student("EE2", 12, 4.0, "Electrical Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
-		studentList.add(new Student("EE3", 13, 4.0, "Electrical Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
-		studentList.add(new Student("EE4", 14, 4.0, "Electrical Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
-		studentList.add(new Student("EE5", 15, 4.0, "Electrical Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
-		studentList.add(new Student("EE6", 16, 4.0, "Electrical Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
-		studentList.add(new Student("EE7", 17, 4.0, "Electrical Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));
-		
-		studentList.add(new Student("ME0", 110, 4.0, "Mechanical Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
-		studentList.add(new Student("ME1", 111, 4.0, "Mechanical Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
-		studentList.add(new Student("ME2", 112, 4.0, "Mechanical Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
-		studentList.add(new Student("ME3", 113, 4.0, "Mechanical Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
-		studentList.add(new Student("ME4", 114, 4.0, "Mechanical Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
-		studentList.add(new Student("ME5", 115, 4.0, "Mechanical Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
-		studentList.add(new Student("ME6", 116, 4.0, "Mechanical Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));
-		
-		studentList.add(new Student("CE0", 1110, 4.0, "Civil Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
-		studentList.add(new Student("CE1", 1111, 4.0, "Civil Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
-		studentList.add(new Student("CE2", 1112, 4.0, "Civil Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
-		studentList.add(new Student("CE3", 1113, 4.0, "Civil Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
-		studentList.add(new Student("CE4", 1114, 4.0, "Civil Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
-		studentList.add(new Student("CE5", 1115, 4.0, "Civil Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));
-		
-		for (Project project : projList)
-		{
-			for (Entry<String, Integer> entry : project.getRequiredMembers().entrySet()) {
-			    System.out.println(entry.getKey() + " = " + entry.getValue());
-			    for (int i = 0; i < entry.getValue(); i++)
-			    {
-			    	for (Student student : studentList)
-					{
-						if ((student.getAssignedProject().contentEquals("")) && (student.getMajor().equals(entry.getKey())))
-						{
-							System.out.println(project.getName());
-							System.out.println(student.getName());
-							project.addActualMembers(student);
-							student.setAssignedProject(project.getName());
-							break;
-						}
-					}
-			    }
-			}
-		}
-		
-		for (Project project : projList)
-		{
-			System.out.println(project.getName());
-			System.out.println(project.getActualMembers());
-		}
+//	public static void main(String[] args) {
+//		
+//		LinkedList<Project> projList = new LinkedList<>();
+//		projList.add(new Project("project0", 0, 0, 0, new HashMap<>(), new LinkedList<Student>()));
+//		projList.add(new Project("project1", 1, 0, 0, new HashMap<>(), new LinkedList<Student>()));
+//		projList.add(new Project("project2", 2, 0, 0, new HashMap<>(), new LinkedList<Student>()));
+//
+//		projList.get(0).addRequiredMembers("Electrical Engineer", 1);
+//		projList.get(0).addRequiredMembers("Electrical Engineer", 1);
+//		projList.get(0).addRequiredMembers("Electrical Engineer", 2);
+//		projList.get(0).addRequiredMembers("Mechanical Engineer", 2);
+//		projList.get(0).addRequiredMembers("Civil Engineer", 1);
+//
+//		projList.get(1).addRequiredMembers("Electrical Engineer", 2);
+//		projList.get(1).addRequiredMembers("Mechanical Engineer", 4);
+//		projList.get(1).addRequiredMembers("Civil Engineer", 3);
+//
+//		projList.get(2).addRequiredMembers("Electrical Engineer", 2);
+//		projList.get(2).addRequiredMembers("Mechanical Engineer", 1);
+//		projList.get(2).addRequiredMembers("Civil Engineer", 2);
+//		
+//		LinkedList<Student> studentList = new LinkedList<>();
+//		
+//		studentList.add(new Student("EE0", 10, 4.0, "Electrical Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));
+//		studentList.add(new Student("EE1", 11, 4.0, "Electrical Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
+//		studentList.add(new Student("EE2", 12, 4.0, "Electrical Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
+//		studentList.add(new Student("EE3", 13, 4.0, "Electrical Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
+//		studentList.add(new Student("EE4", 14, 4.0, "Electrical Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
+//		studentList.add(new Student("EE5", 15, 4.0, "Electrical Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
+//		studentList.add(new Student("EE6", 16, 4.0, "Electrical Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
+//		studentList.add(new Student("EE7", 17, 4.0, "Electrical Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));
+//		
+//		studentList.add(new Student("ME0", 110, 4.0, "Mechanical Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
+//		studentList.add(new Student("ME1", 111, 4.0, "Mechanical Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
+//		studentList.add(new Student("ME2", 112, 4.0, "Mechanical Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
+//		studentList.add(new Student("ME3", 113, 4.0, "Mechanical Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
+//		studentList.add(new Student("ME4", 114, 4.0, "Mechanical Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
+//		studentList.add(new Student("ME5", 115, 4.0, "Mechanical Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
+//		studentList.add(new Student("ME6", 116, 4.0, "Mechanical Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));
+//		
+//		studentList.add(new Student("CE0", 1110, 4.0, "Civil Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
+//		studentList.add(new Student("CE1", 1111, 4.0, "Civil Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
+//		studentList.add(new Student("CE2", 1112, 4.0, "Civil Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
+//		studentList.add(new Student("CE3", 1113, 4.0, "Civil Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
+//		studentList.add(new Student("CE4", 1114, 4.0, "Civil Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));	
+//		studentList.add(new Student("CE5", 1115, 4.0, "Civil Engineer", "", 0, "", new LinkedList<String>(), new LinkedList<String>()));
+//		
+//		for (Project project : projList)
+//		{
+//			for (Entry<String, Integer> entry : project.getRequiredMembers().entrySet()) {
+//			    System.out.println(entry.getKey() + " = " + entry.getValue());
+//			    for (int i = 0; i < entry.getValue(); i++)
+//			    {
+//			    	for (Student student : studentList)
+//					{
+//						if ((student.getAssignedProject().contentEquals("")) && (student.getMajor().equals(entry.getKey())))
+//						{
+//							System.out.println(project.getName());
+//							System.out.println(student.getName());
+//							project.addActualMembers(student);
+//							student.setAssignedProject(project.getName());
+//							break;
+//						}
+//					}
+//			    }
+//			}
+//		}
+//		
+//		for (Project project : projList)
+//		{
+//			System.out.println(project.getName());
+//			System.out.println(project.getActualMembers());
+//		}
 //
 //		LinkedList<Integer> student1Enemies = new LinkedList<Integer>();
 //		student1Enemies.add(222);
@@ -244,5 +244,5 @@ public class Project
 //		System.out.println("projecct2Degrees = " + project2Degrees);
 //		System.out.println("seniorProject3 = " + seniorProject3);
 //		System.out.println("project3Degrees = " + project3Degrees);
-	}
+//	}
 }

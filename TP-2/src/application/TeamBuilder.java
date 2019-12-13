@@ -360,21 +360,21 @@ public class TeamBuilder {
 		return false;
 	}
 	
-	public static void main(String[] args)
-	{
-		LinkedList<Student> myStudents = SampleData.getStudents();
-		double studentBodyGPA = 0;
-		double gpaRange = 0.2;
-		
-		for (Student student : myStudents)
-		{
-			studentBodyGPA += student.getGPA();
-		}
-		
-		studentBodyGPA /= myStudents.size();
-		
-		TeamBuilder teamBuilder = new TeamBuilder(SampleData.getProjects(), SampleData.getStudents(), studentBodyGPA - gpaRange, studentBodyGPA + gpaRange, true, true);
-		
-		teamBuilder.buildTeams();
-	}
+//	public static void main(String[] args)
+//	{
+//		LinkedList<Student> myStudents = SampleData.getStudents();
+//		double studentBodyGPA = 0;
+//		double gpaRange = 0.2;
+//		
+//		for (Student student : myStudents)
+//		{
+//			studentBodyGPA += student.getGPA();
+//		}
+//		
+//		studentBodyGPA /= myStudents.size();
+//		
+//		TeamBuilder teamBuilder = new TeamBuilder(SampleData.getProjects(), SampleData.getStudents(), studentBodyGPA - gpaRange, studentBodyGPA + gpaRange, true, true);
+//		
+//		teamBuilder.buildTeams();
+//	}
 }

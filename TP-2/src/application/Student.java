@@ -114,7 +114,7 @@ public class Student {
 		this.enemyNames.add(input);
 	}
 	
-	public void removeEnemyIDs(String input) {
+	public void removeEnemyNames(String input) {
 		for (int i = 0; i < enemyNames.size(); i++)
 		{
 			if (enemyNames.get(i).equals(input))
