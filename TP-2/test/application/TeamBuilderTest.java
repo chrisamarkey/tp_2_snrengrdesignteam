@@ -247,12 +247,15 @@ class TeamBuilderTest
 		TeamBuilder teamBuilder = new TeamBuilder(projList, stuList, studentBodyGPA - gpaRange, studentBodyGPA + gpaRange, true, true);
 		
 		teamBuilder.buildTeams();
-		
-		teamBuilder.getStudents();
-		teamBuilder.getProjects();
+
+		assertNotNull(teamBuilder.getStudents());
+		assertNotNull(teamBuilder.getProjects());
 		
 		teamBuilder = new TeamBuilder(projList, stuList, studentBodyGPA - gpaRange, studentBodyGPA + gpaRange, false, false);
 		
 		teamBuilder.buildTeams();
+
+		assertNotNull(teamBuilder.getStudents());
+		assertNotNull(teamBuilder.getProjects());
 	}
 }
