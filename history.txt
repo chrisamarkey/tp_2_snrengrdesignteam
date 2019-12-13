@@ -1,7 +1,13 @@
+12/12/19 (AJL): Updated Proof of Concept input files and other deliverables.
+12/9/19 (AJL): Completed final hooks for integration between I/O and Team builder classes.
 12/8/19 (CAM):  Made final changes to Project, Student and TeamBuilder classes. 
     Note: Craig has built a new TeamBuilder class and has modified the Project and Student classes that he and I originally built.
+12/6/19 (AJL): Updated output file layouts and cell formatting.
 12/5/19 (CAM):  Completed Project and Student classes were integrated with new TeamBuilder class.
+12/4/19 (AJL): Updated Excel I/O for correct file formats and better integration. 
 11/28/19 (CAM): Updated Project and Student classes with new attributes.
 11/25/19 (CAM): Updated Project and Student classes with new attributes.
+11/24/19 (AJL): Commited Initial "Happy Path" Excel reader and writer
 11/22/19 (CAM): Updated Project and Student classes.
 11/17/19 (CAM):	Initial commit to Markey branch for the Student and Project classes.
+
